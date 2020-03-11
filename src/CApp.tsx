@@ -9,10 +9,9 @@ import { CInBound } from "./inbound/CInBound";
 import { COutBound } from "./outbound/COutBound";
 import { CSetting } from "./setting/CSetting";
 
-
 export class CApp extends CAppBase {
-
     get uqs(): UQs { return this._uqs as UQs };
+
     topKey: any;
 
     currentSalesRegion: any;
@@ -31,12 +30,18 @@ export class CApp extends CAppBase {
 
     protected async internalStart() {
 
+        this.cHome = this.newC(CHome);
+        this.cInBound = this.newC(CInBound);
+        this.cOutBound = this.newC(COutBound);
+        this.cSetting = this.newC(CSetting);
+        this.cMessage = this.newC(CMessage);
+
         this.showMain();
         // this.topKey = nav.topKey();
     }
 
-    public showMain(initTabName?: string) {
-        this.openVPage(VSetting, initTabName);
+    showMain(initTabName?: string) {
+        this.openVPage(VMain, initTabName);
     }
 
 }

@@ -31,7 +31,8 @@ export class CHome extends CUqBase {
     //    cApp: CApp;
 
     async internalStart(param: any) {
-
+        let { cSetting } = this.cApp;
+        await cSetting.start();
         this.openVPage(VHome);
     }
 

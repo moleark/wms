@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { nav, VPage, CApp, Page, Prop, IconText, FA, PropGrid, LMR } from 'tonva';
+import { nav, VPage, CApp, Page, Prop, IconText, FA, PropGrid, Image, LMR } from 'tonva';
 //import { Prop, IconText, FA, PropGrid, LMR } from 'tonva';
 import { CSetting } from './CSetting';
-//import { appConfig } from '../configuration';
 import { observer } from 'mobx-react';
+//import { appConfig } from '../configuration';
 
 export class VSetting extends VPage<CSetting> {
 
     async open(param?: any) {
-        this.openPage(this.content);
+        //this.openPage(this.page);
     }
 
     private exit() {
@@ -16,14 +16,10 @@ export class VSetting extends VPage<CSetting> {
     }
 
     private openWarehouseList = async () => {
+
         this.controller.openWarehouseList();
     }
-    private openWarehouseBuildList = async () => {
-        this.controller.opennWarehouseBuildList();
-    }
-    private openWarehouseRoomList = async () => {
-        this.controller.openWarehouseRoomList();
-    }
+
     /*
     private openShelfList = async () => {
         this.controller.openShelftList();
@@ -36,22 +32,32 @@ export class VSetting extends VPage<CSetting> {
     }
     */
 
+    private meInfo = observer(() => {
+        let { user } = nav;
+        if (user === undefined) return null;
+        let { id, name, nick, icon } = user;
+        return <LMR className="py-2 cursor-pointer w-100"
+            left={<Image className="w-3c h-3c mr-3" src={icon} />}
+            // right={<FA className="align-self-end" name="angle-right" />}
+            onClick={() => {
+                //this.openVPage(EditMeInfo);
+            }}>
+            <div>
+                <div>{userSpan(name, nick)}</div>
+                <div className="small"><span className="text-muted">ID:</span> {id > 10000 ? id : String(id + 10000).substr(1)}</div>
+            </div>
+        </LMR>;
+    });
+
     public render() {
-        return <this.content />;
+        return <this.page />;
     }
 
-    private openWarehouse = async () => {
-        // this.controller.openWarehouse();
-    }
-
-    private content = observer(() => {
-
-        //return <Page header="仓库设置"><div>123 当前显示设置界面</div></Page>
+    private page = () => {
 
         const { user } = nav;
-
         let rows: Prop[];
-        if (user !== undefined) {
+        if (user === undefined) {
             rows = [];
             rows.push(
                 {
@@ -63,6 +69,7 @@ export class VSetting extends VPage<CSetting> {
             );
         }
         else {
+
             let logOutRows: Prop[] = [
                 '',
                 {
@@ -78,20 +85,13 @@ export class VSetting extends VPage<CSetting> {
                 '',
                 {
                     type: 'component',
-                    component: <IconText iconClass="text-info mr-2" icon="address-book-o" text="库房管理" />,
+                    component: <this.meInfo />
+                },
+                '',
+                {
+                    type: 'component',
+                    component: <IconText iconClass="text-info mr-2" icon="institution" text="库房管理" />,
                     onClick: this.openWarehouseList
-                },
-                '',
-                {
-                    type: 'component',
-                    component: <IconText iconClass="text-info mr-2" icon="address-book-o" text="库区管理" />,
-                    onClick: this.openWarehouseBuildList
-                },
-                '',
-                {
-                    type: 'component',
-                    component: <IconText iconClass="text-info mr-2" icon="address-book-o" text="房间管理" />,
-                    onClick: this.openWarehouseRoomList
                 }
                 /*,
                 '',
@@ -99,35 +99,30 @@ export class VSetting extends VPage<CSetting> {
                     type: 'component',
                     component: <IconText iconClass="text-info mr-2" icon="key" text="货架管理" />,
                     onClick: this.changePassword
-                },
-                '',
-                {
-                    type: 'component',
-                    component: <IconText iconClass="text-info mr-2" icon="key" text="货架层管理" />,
-                    onClick: this.changePassword
-                },
-                '',
-                {
-                    type: 'component',
-                    component: <IconText iconClass="text-info mr-2" icon="key" text="货位管理" />,
-                    onClick: this.changePassword
-                }
+                },               
                 */
             ]
             rows.push(...logOutRows);
         }
+
         let right =
-            <div onClick={() => this.controller.start()}>
+            <div>
                 <span className="fa-stack">
-                    <i className="fa fa-square fa-stack-2x text-primary"></i>
-                    <i className="fa fa-cog fa-stack-1x text-white"></i>
+                    <IconText iconClass="fa fa-cogs" icon="gears" text="" />
                 </span>
             </div>;
-        return <Page header="仓库设置">
-            <PropGrid rows={rows} values={{}} />
-        </Page>;
-    })
 
+        return <Page header="仓库设置" right={right}>
+            <PropGrid rows={rows} values={{}} />
+        </Page >;
+    }
+
+}
+
+function userSpan(name: string, nick: string): JSX.Element {
+    return nick ?
+        <><b>{nick} &nbsp; <small className="muted">{name}</small></b></>
+        : <b>{name}</b>
 }
 
 

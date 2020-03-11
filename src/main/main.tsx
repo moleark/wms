@@ -24,9 +24,9 @@ export class VMain extends VPage<CApp> {
         let { cHome, cInBound, cOutBound, cSetting, cMessage } = this.controller;
         let faceTabs = [
             { name: 'home', label: '首页', icon: 'home', content: cHome.tab, notify: undefined },
-            { name: 'inbound', label: '入库', icon: 'shopping-cart', content: cInBound.tab, notify: cMessage.count },
-            { name: 'outbound', label: '出库', icon: 'shopping-cart', content: cOutBound.tab, notify: cMessage.count },
-            { name: 'setting', label: '设置', icon: 'user', content: cSetting.tab }
+            { name: 'inbound', label: '入库', icon: 'sign-in', content: cInBound.tab, notify: undefined },
+            { name: 'outbound', label: '出库', icon: 'sign-out', content: cOutBound.tab, notify: undefined },
+            { name: 'setting', label: '设置', icon: 'gear', content: cSetting.tab }
         ].map(v => {
             let { name, label, icon, content, notify } = v;
             return {
