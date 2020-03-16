@@ -8,7 +8,12 @@ export interface UqWms {
     ShelfLayer: Tuid;
     ShelfBlock: History;
     GetWarehouseList: Query;
-
+    GetWarehouseByName: Query;
+    GetWarehouseBuilding: Query;
+    GetWarehouseRoom: Query;
+    GetShelf: Query;
+    GetShelfLayer: Query;
+    GetShelfBlock: Query;
 }
 
 export interface UQs {
