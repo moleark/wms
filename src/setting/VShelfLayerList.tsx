@@ -27,9 +27,9 @@ export class VShelfLayerList extends VPage<CWarehouse> {
         </div>;
 
         let footer = <button type="button" className="btn btn-primary w-100" >添加新货架层</button>;
-        let warehouseBuildList = <List items={shelfLayers} item={{ render: this.onWarehouseRender }} none="无货架层" />;
+        let shelfLayerList = <List items={shelfLayers} item={{ render: this.onWarehouseRender }} none="无货架层" />;
         return <Page header={header} right={right} footer={footer}>
-            {warehouseBuildList}
+            {shelfLayerList}
         </Page>;
     };
 
