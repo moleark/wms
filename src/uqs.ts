@@ -7,13 +7,12 @@ export interface UqWms {
     Shelf: Tuid;
     ShelfLayer: Tuid;
     ShelfBlock: History;
-    GetWarehouseList: Query;
-    GetWarehouseByName: Query;
-    GetWarehouseBuilding: Query;
-    GetWarehouseRoom: Query;
-    GetShelf: Query;
-    GetShelfLayer: Query;
-    GetShelfBlock: Query;
+    SearchWarehouseByKey: Query;
+    SearchWarehouseBuilding: Query;
+    SearchWarehouseRoom: Query;
+    SearchShelf: Query;
+    SearchShelfLayer: Query;
+    SearchShelfBlock: Query;
 }
 
 export interface UQs {

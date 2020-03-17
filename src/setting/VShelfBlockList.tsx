@@ -1,43 +1,48 @@
 
 import * as React from 'react';
-import { Page, VPage, FA, List, View, IconText, LMR, tv } from 'tonva';
+import { Page, VPage, FA, List, View, IconText, LMR, tv, SearchBox } from 'tonva';
 import { CWarehouse } from './CWarehouse';
 import { observer } from 'mobx-react';
 
 export class VShelfBlockList extends VPage<CWarehouse> {
 
-    private shelfBlocks: any[];
+    async open() {
 
-    async open(shelfBlocks?: any[]) {
-
-        this.shelfBlocks = shelfBlocks;
         this.openPage(this.page);
     }
 
     private page = () => {
-        let right =
-            <div>
-                <span className="fa-stack">
-                    <IconText iconClass="fa fa-cog" icon="gear" text="" />
-                </span>
-            </div>;
+
+        let { shelfBlocks, searchShelfBlockByKey, currentShelfLayer } = this.controller;
+
+        let header = <header>
+            <div className="px-0">货位查询</div>
+        </header>;
+
+        let right = <div className="d-flex align-items-center">
+            <SearchBox
+                size='sm'
+                onSearch={(key: string) => searchShelfBlockByKey(currentShelfLayer, key)}
+                placeholder="请输入货位名称" />
+        </div>;
+
         let footer = <button type="button" className="btn btn-primary w-100" >添加新货位</button>;
-        let warehouseBuildList = <List items={this.shelfBlocks} item={{ render: this.onWarehouseRender }} none="无货位" />;
-        return <Page header="货位列表" right={right} footer={footer}>
+        let warehouseBuildList = <List items={shelfBlocks} item={{ render: this.onWarehouseRender }} none="无货位" />;
+        return <Page header={header} right={right} footer={footer}>
             {warehouseBuildList}
         </Page>;
     };
 
     private onWarehouseRender = (warehouseBuild: any) => {
 
-        let { $id, name, no: number } = warehouseBuild;
-        //let { openshelfList } = this.controller;
+        let { id, name, no: number } = warehouseBuild;
+        //let {  } = this.controller;
         let right = <div className="p-2 cursor-pointer text-info">
             <FA name="edit" />
         </div>
         return <LMR right={right} className="px-3 py-2" >
             <div>
-                {number},  {name}
+                {number}：{name}
             </div>
         </ LMR>
     };

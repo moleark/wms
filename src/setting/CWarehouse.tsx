@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { Tuid, Query, PageItems, Map } from 'tonva';
-import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { CUqBase } from '../CBase';
 import { VWarehouseList } from './VWarehouseList';
@@ -10,93 +8,87 @@ import { VShelfList } from './VShelfList';
 import { VShelfLayerList } from './VShelfLayerList';
 import { VShelfBlockList } from './VShelfBlockList';
 
-class PageWarehouse extends PageItems<any> {
-
-    private searchWarehouse: Query;
-    constructor(searchQuery: Query) {
-        super();
-        this.firstSize = this.pageSize = 14;
-        this.searchWarehouse = searchQuery;
-    }
-
-    protected async load(param: any, pageStart: any, pageSize: number): Promise<any[]> {
-        if (pageStart === undefined) pageStart = 0;
-        let ret = await this.searchWarehouse.page(param, pageStart, pageSize);
-        return ret;
-    }
-    protected setPageStart(item: any): any {
-        this.pageStart = item === undefined ? 0 : item.id;
-    }
-}
-
 export class CWarehouse extends CUqBase {
 
-    //    cApp: CApp;
+    warehouses: any[];
+    currentWarehouse: string;
+    warehouseBuilds: any[];
+    currentWarehouseBuild: string;
+    warehouseRooms: any[];
+    currentWarehouseRoom: string;
+    shelfs: any[];
+    currentShelf: string;
+    shelfLayers: any[];
+    currentShelfLayer: string;
+    shelfBlocks: any[];
+
     async internalStart(param: any) {
 
-        //this.searchWarehouseByKey(param);
-        let warehouseQResult = await this.getWarehouses();
-        let warehouses: any[] = warehouseQResult;
-        this.openVPage(VWarehouseList, warehouses);
+        await this.searchWarehouseByKey(param);
+        this.openVPage(VWarehouseList);
     }
 
     /*
-    searchWarehouseByKey = async (key: string) => {
-        this.warehouse = new PageWarehouse(this.uqs.warehouse.GetWarehouseList);
-        this.warehouse.first({ key: key });
-    }
-    */
-
     async getWarehouses(): Promise<any[]> {
-
         return await this.uqs.warehouse.Warehouse.all(); // GetWarehouseList.query({});
-    }
-
-    /*
+    };
     async getWarehouse(id: number): Promise<any[]> {
         return await this.uqs.warehouse.Warehouse.load(id);
         // await this.uqs.warehouse.Warehouse.loadArr();
     }
     */
 
-    //库区管理界面
-    openWarehouseBuildingList = async (id: number) => {
+    // 查询库房
+    searchWarehouseByKey = async (key: String) => {
 
-        let warehouseBuildsQuery = await this.uqs.warehouse.GetWarehouseBuilding.query({ warehouse: id });
-        let warehouseBuilds: any[] = warehouseBuildsQuery.ret;
-        this.openVPage(VWarehouseBuildingList, warehouseBuilds);
+        let warehouseList = await this.uqs.warehouse.SearchWarehouseByKey.query({ key: key });
+        this.warehouses = warehouseList.ret;
+        this.openVPage(VWarehouseList);
     };
 
-    //房间管理界面
-    openWarehouseRoomList = async (id: number) => {
+    // 库区管理界面 查询库区
+    searchWarehouseBuildByKey = async (warehouse: string, key?: String) => {
 
-        let warehouseRoomsQuery = await this.uqs.warehouse.GetWarehouseRoom.query({ warehouseBuilding: id });
-        let warehouseRooms: any[] = warehouseRoomsQuery.ret;
-        this.openVPage(VWarehouseRoomList, warehouseRooms);
+        this.currentWarehouse = warehouse;
+        let warehouseBuildList = await this.uqs.warehouse.SearchWarehouseBuilding.query({ warehouse: warehouse, key: key });
+        this.warehouseBuilds = warehouseBuildList.ret;
+        this.openVPage(VWarehouseBuildingList);
     };
 
-    //货架组管理界面
-    openShelfList = async (id: number) => {
+    // 房间管理界面 查询房间
+    searchWarehouseRoomByKey = async (warehouseBuild: string, key?: String) => {
 
-        let shelfsQuery = await this.uqs.warehouse.GetShelf.query({ warehouseRoom: id });
-        let shelfs: any[] = shelfsQuery.ret;
-        this.openVPage(VShelfList, shelfs);
+        this.currentWarehouseBuild = warehouseBuild;
+        let warehouseRoomList = await this.uqs.warehouse.SearchWarehouseRoom.query({ warehouseBuilding: warehouseBuild, key: key });
+        this.warehouseRooms = warehouseRoomList.ret;
+        this.openVPage(VWarehouseRoomList);
     };
 
-    //货架层管理界面
-    openShelfLayerList = async (id: number) => {
+    //货架组管理界面 查询货架
+    searchShelfByKey = async (warehouseRoom: string, key?: String) => {
 
-        let shelfLayersQuery = await this.uqs.warehouse.GetShelfLayer.query({ shelf: id });
-        let shelfLayers: any[] = shelfLayersQuery.ret;
-        this.openVPage(VShelfLayerList, shelfLayers);
+        this.currentWarehouseRoom = warehouseRoom;
+        let shelfList = await this.uqs.warehouse.SearchShelf.query({ warehouseRoom: warehouseRoom, key: key });
+        this.shelfs = shelfList.ret;
+        this.openVPage(VShelfList);
     };
 
-    //货位管理界面
-    openShelfBlockList = async (id: number) => {
+    //货架层管理界面 查询货架层
+    searchShelfLayerByKey = async (shelf: string, key?: String) => {
 
-        let shelfBlocksQuery = await this.uqs.warehouse.GetShelfBlock.query({ shelfLayer: id });
-        let shelfBlocks: any[] = shelfBlocksQuery.ret;
-        this.openVPage(VShelfBlockList, shelfBlocks);
+        this.currentShelf = shelf;
+        let shelfLayerList = await this.uqs.warehouse.SearchShelfLayer.query({ shelf: shelf, key: key });
+        this.shelfLayers = shelfLayerList.ret;
+        this.openVPage(VShelfLayerList);
+    };
+
+    //货位管理界面 查询货位号
+    searchShelfBlockByKey = async (shelfLayer: string, key?: String) => {
+
+        this.currentShelfLayer = shelfLayer;
+        let shelfBlockList = await this.uqs.warehouse.SearchShelfBlock.query({ shelfLayer: shelfLayer, key: key });
+        this.shelfBlocks = shelfBlockList.ret;
+        this.openVPage(VShelfBlockList);
     };
 
     render = observer(() => {

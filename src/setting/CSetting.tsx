@@ -23,6 +23,4 @@ export class CSetting extends CUqBase {
         let cWarehouseList = this.newC(CWarehouse); // new CSelectShippingContact(this.cApp, undefined, false);
         await cWarehouseList.start();
     }
-
-
 }
