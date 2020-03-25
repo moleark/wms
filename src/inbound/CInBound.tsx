@@ -1,5 +1,3 @@
-import { Tuid } from 'tonva';
-import { PageItems } from 'tonva';
 import { CUqBase } from '../CBase';
 import { VInBound } from './VInBound';
 

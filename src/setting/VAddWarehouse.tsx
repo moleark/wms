@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Page, VPage, FA, List, LMR, SearchBox } from 'tonva';
 import { CWarehouse } from './CWarehouse';
 
-export class VWarehouseList extends VPage<CWarehouse> {
+export class VAddWarehouse extends VPage<CWarehouse> {
 
     async open() {
         this.openPage(this.page);

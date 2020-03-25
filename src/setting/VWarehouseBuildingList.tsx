@@ -1,12 +1,11 @@
 
 import * as React from 'react';
-import { Page, VPage, FA, List, View, IconText, LMR, SearchBox, tv } from 'tonva';
+import { Page, VPage, FA, List, LMR, SearchBox } from 'tonva';
 import { CWarehouse } from './CWarehouse';
-import { observer } from 'mobx-react';
 
 export class VWarehouseBuildingList extends VPage<CWarehouse> {
 
-    async open(warehouseBuilds?: any[]) {
+    async open() {
 
         this.openPage(this.page);
     }
@@ -19,7 +18,7 @@ export class VWarehouseBuildingList extends VPage<CWarehouse> {
             <div className="px-0">库区查询</div>
         </header>;
 
-        let right = <div className="d-flex align-items-center">
+        let right = <div className="d-flex align-items-center mr-2">
             <SearchBox
                 size='sm'
                 onSearch={(key: string) => searchWarehouseBuildByKey(currentWarehouse, key)}

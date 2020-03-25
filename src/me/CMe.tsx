@@ -1,16 +1,16 @@
 //import _ from 'lodash';
 import { CUqBase } from '../CBase';
-import { VSetting } from './VSetting';
-import { CWarehouse } from './CWarehouse';
+import { VMe } from './VMe';
+import { CWarehouse } from '../setting/CWarehouse';
 
-export class CSetting extends CUqBase {
+export class CMe extends CUqBase {
 
     //    cApp: CApp;
     protected async internalStart() {
-        this.openVPage(VSetting);
+        this.openVPage(VMe);
     }
 
-    tab = () => this.renderView(VSetting);
+    tab = () => this.renderView(VMe);
 
     //库房管理
     openWarehouseList = async () => {

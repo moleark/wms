@@ -21,12 +21,12 @@ export class VMain extends VPage<CApp> {
     */
 
     render = (param?: any): JSX.Element => {
-        let { cHome, cInBound, cOutBound, cSetting, cMessage } = this.controller;
+        let { cHome, cInBound, cOutBound, cSetting, cMe } = this.controller;
         let faceTabs = [
             { name: 'home', label: '首页', icon: 'home', content: cHome.tab, notify: undefined },
             { name: 'inbound', label: '入库', icon: 'sign-in', content: cInBound.tab, notify: undefined },
             { name: 'outbound', label: '出库', icon: 'sign-out', content: cOutBound.tab, notify: undefined },
-            { name: 'setting', label: '设置', icon: 'gear', content: cSetting.tab }
+            { name: 'me', label: '我的', icon: 'user', content: cMe.tab }
         ].map(v => {
             let { name, label, icon, content, notify } = v;
             return {

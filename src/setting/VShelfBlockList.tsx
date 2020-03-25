@@ -1,8 +1,7 @@
 
 import * as React from 'react';
-import { Page, VPage, FA, List, View, IconText, LMR, tv, SearchBox } from 'tonva';
+import { Page, VPage, FA, List, LMR, SearchBox } from 'tonva';
 import { CWarehouse } from './CWarehouse';
-import { observer } from 'mobx-react';
 
 export class VShelfBlockList extends VPage<CWarehouse> {
 
@@ -19,7 +18,7 @@ export class VShelfBlockList extends VPage<CWarehouse> {
             <div className="px-0">货位查询</div>
         </header>;
 
-        let right = <div className="d-flex align-items-center">
+        let right = <div className="d-flex align-items-center mr-2">
             <SearchBox
                 size='sm'
                 onSearch={(key: string) => searchShelfBlockByKey(currentShelfLayer, key)}
@@ -35,14 +34,14 @@ export class VShelfBlockList extends VPage<CWarehouse> {
 
     private onWarehouseRender = (warehouseBuild: any) => {
 
-        let { id, name, no: number } = warehouseBuild;
+        let { name, no: number } = warehouseBuild; //id
         //let {  } = this.controller;
         let right = <div className="p-2 cursor-pointer text-info">
             <FA name="edit" />
         </div>
         return <LMR right={right} className="px-3 py-2" >
             <div>
-                {number}：{name}
+                {number}: {name}
             </div>
         </ LMR>
     };

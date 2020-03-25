@@ -1,6 +1,4 @@
-import { Query, PageItems } from 'tonva';
 import { CUqBase } from '../CBase';
-import { VMessage } from './VMessage';
 import { observable } from 'mobx';
 
 export class CMessage extends CUqBase {

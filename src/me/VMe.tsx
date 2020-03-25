@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { nav, VPage, Page, Prop, IconText, FA, PropGrid, Image, LMR } from 'tonva';
 //import { Prop, IconText, FA, PropGrid, LMR } from 'tonva';
-import { CSetting } from './CSetting';
+import { CMe } from './CMe';
 import { observer } from 'mobx-react';
 //import { appConfig } from '../configuration';
 
-export class VSetting extends VPage<CSetting> {
+export class VMe extends VPage<CMe> {
 
     async open(param?: any) {
         //this.openPage(this.page);
@@ -108,11 +108,11 @@ export class VSetting extends VPage<CSetting> {
         let right =
             <div>
                 <span className="fa-stack">
-                    <IconText iconClass="fa fa-cogs" icon="gears" text="" />
+                    <IconText iconClass="fa fa-cogs" icon="gears" text="更多设置" />
                 </span>
             </div>;
 
-        return <Page header="仓库设置" right={right}>
+        return <Page header="我的信息" right={right}>
             <PropGrid rows={rows} values={{}} />
         </Page >;
     }

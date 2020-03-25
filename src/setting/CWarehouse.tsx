@@ -46,6 +46,10 @@ export class CWarehouse extends CUqBase {
         this.openVPage(VWarehouseList);
     };
 
+    addWarehouse = async () => {
+
+    };
+
     // 库区管理界面 查询库区
     searchWarehouseBuildByKey = async (warehouse: string, key?: String) => {
 
