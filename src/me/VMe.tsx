@@ -3,6 +3,7 @@ import { nav, VPage, Page, Prop, IconText, FA, PropGrid, Image, LMR } from 'tonv
 //import { Prop, IconText, FA, PropGrid, LMR } from 'tonva';
 import { CMe } from './CMe';
 import { observer } from 'mobx-react';
+import { VSetting } from 'setting/VSetting';
 //import { appConfig } from '../configuration';
 
 export class VMe extends VPage<CMe> {
@@ -38,9 +39,9 @@ export class VMe extends VPage<CMe> {
         let { id, name, nick, icon } = user;
         return <LMR className="py-2 cursor-pointer w-100"
             left={<Image className="w-3c h-3c mr-3" src={icon} />}
-            // right={<FA className="align-self-end" name="angle-right" />}
+            right={<FA className="align-self-end" name="reorder" />}
             onClick={() => {
-                //this.openVPage(EditMeInfo);
+                this.controller.openSettingPage();
             }}>
             <div>
                 <div>{userSpan(name, nick)}</div>
@@ -90,31 +91,29 @@ export class VMe extends VPage<CMe> {
                 '',
                 {
                     type: 'component',
-                    component: <IconText iconClass="text-info mr-2" icon="institution" text="库房管理" />,
+                    component: <IconText iconClass="text-info mr-2" icon="institution" text="入库管理" />,
                     onClick: this.openWarehouseList
-                }
-                /*,
+                },
                 '',
                 {
                     type: 'component',
-                    component: <IconText iconClass="text-info mr-2" icon="key" text="货架管理" />,
-                    onClick: this.changePassword
-                },               
-                */
+                    component: <IconText iconClass="text-info mr-2" icon="key" text="入库管理" />,
+                    onClick: this.openWarehouseList
+                },
+
             ]
             rows.push(...logOutRows);
         }
 
+        /*<IconText iconClass="fa fa-cogs" icon="gears" text="更多设置" />*/
         let right =
-            <div>
+            <div onClick={() => this.controller.openSettingPage()}>
                 <span className="fa-stack">
-                    <IconText iconClass="fa fa-cogs" icon="gears" text="更多设置" />
+                    <IconText iconClass="fa fa-cogs" icon="ellipsis-h" text="更多设置" />
                 </span>
             </div>;
 
-        return <Page header="我的信息" right={right}>
-            <PropGrid rows={rows} values={{}} />
-        </Page >;
+        return <PropGrid rows={rows} values={{}} />;
     }
 
 }

@@ -1,6 +1,7 @@
 //import _ from 'lodash';
 import { CUqBase } from '../CBase';
 import { VMe } from './VMe';
+import { VSetting } from '../setting/VSetting';
 import { CWarehouse } from '../setting/CWarehouse';
 
 export class CMe extends CUqBase {
@@ -17,5 +18,9 @@ export class CMe extends CUqBase {
 
         let cWarehouseList = this.newC(CWarehouse); // new CSelectShippingContact(this.cApp, undefined, false);
         await cWarehouseList.start();
-    }
+    };
+
+    openSettingPage = async () => {
+        this.openVPage(VSetting);
+    };
 }
