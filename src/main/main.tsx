@@ -8,20 +8,15 @@ import { CApp } from '../CApp';
 const color = (selected: boolean) => selected === true ? 'text-primary' : 'text-muted';
 
 export class VMain extends VPage<CApp> {
-    async open(param?: any) {
+
+    async open() {
+
         this.calcSum();
         this.openPage(this.render);
     }
 
-    /*
-    downloadApp = () => {
-        if (browser.versions.android)
-            window.open(GLOABLE.ANDROIDAPPADDRESS);
-    }
-    */
-
     render = (param?: any): JSX.Element => {
-        let { cHome, cInBound, cOutBound, cSetting, cMe } = this.controller;
+        let { cHome, cInBound, cOutBound, cMe } = this.controller;
         let faceTabs = [
             { name: 'home', label: '首页', icon: 'home', content: cHome.tab, notify: undefined },
             { name: 'inbound', label: '入库', icon: 'sign-in', content: cInBound.tab, notify: undefined },
@@ -38,17 +33,6 @@ export class VMain extends VPage<CApp> {
         });
 
         let header: any = false;
-
-        /*
-        if (!browser.versions.html5Plus && browser.versions.android) {
-            header = <div className="w-100 mx-3 d-flex justify-content-between" onClick={this.downloadApp}>
-                <span className="pt-2 small text-danger">
-                    APP购物更方便
-                </span>
-                <button type="button" className="btn btn-primary btn-sm">立即安装</button>
-            </div>
-        }
-        */
 
         return <Page header={header} headerClassName="bg-warning" >
             <Tabs tabs={faceTabs} />

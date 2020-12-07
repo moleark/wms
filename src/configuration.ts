@@ -7,7 +7,6 @@ export const appConfig: AppConfig = {
     tvs: tvs,
     oem: '百灵威'
 };
-
 /*
 // 生产配置
 export const GLOABLE = {

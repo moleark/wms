@@ -8,12 +8,13 @@ import { CInBound } from "./inbound/CInBound";
 import { COutBound } from "./outbound/COutBound";
 import { CSetting } from "./setting/CSetting";
 import { CMe } from "./me/CMe";
+import { CWarehouse } from "../src/setting/warehouseBuild/CWarehouse";
+import { CStorageCondition } from "../src/setting/storageCondition/CStorageCondition";
 
 export class CApp extends CAppBase {
     get uqs(): UQs { return this._uqs as UQs };
 
     topKey: any;
-
     currentSalesRegion: any;
     currentLanguage: any;
 
@@ -21,9 +22,10 @@ export class CApp extends CAppBase {
     cInBound: CInBound;
     cOutBound: COutBound;
     cSetting: CSetting;
-    cMessage: CMessage;
+    //cMessage: CMessage;
     cMe: CMe;
-
+    cWarehouse: CWarehouse;
+    cStorageCondition: CStorageCondition;
 
     protected newC<T extends CUqBase>(type: IConstructor<T>): T {
         return new type(this);
@@ -35,11 +37,12 @@ export class CApp extends CAppBase {
         this.cInBound = this.newC(CInBound);
         this.cOutBound = this.newC(COutBound);
         this.cSetting = this.newC(CSetting);
-        this.cMe = this.newC(CMe);
         //this.cMessage = this.newC(CMessage);
+        this.cMe = this.newC(CMe);
+        this.cWarehouse = this.newC(CWarehouse);
+        this.cStorageCondition = this.newC(CStorageCondition);
 
         this.showMain();
-        // this.topKey = nav.topKey();
     }
 
     showMain(initTabName?: string) {

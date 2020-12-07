@@ -1,21 +1,33 @@
-//import _ from 'lodash';
 import { CUqBase } from '../CBase';
-import { VSetting } from './VSetting';
-import { CWarehouse } from './CWarehouse';
+import { VSetting } from './index';
+import { CWarehouse } from './warehouseBuild/CWarehouse';
+import { CStorageCondition } from './storageCondition/CStorageCondition';
 
 export class CSetting extends CUqBase {
 
-    //    cApp: CApp;
     protected async internalStart() {
+
         this.openVPage(VSetting);
     }
 
-    tab = () => this.renderView(VSetting);
-
-    //库房管理
-    openWarehouseList = async () => {
-
-        let cWarehouseList = this.newC(CWarehouse); // new CSelectShippingContact(this.cApp, undefined, false);
-        await cWarehouseList.start();
+    /**
+     public showSetting() {
+        this.openVPage(VSetting);
     }
+    tab = () => this.renderView(VSetting);
+     */
+
+    //打开库房管理界面
+    public openWarehouseList = async () => {
+
+        let cWarehouseList = this.newC(CWarehouse);
+        await cWarehouseList.start();
+    };
+
+    // 打开存储条件管理界面
+    public openStorageConditionList = async () => {
+
+        let cStorageConditionList = this.newC(CStorageCondition);
+        await cStorageConditionList.start();
+    };
 }

@@ -6,7 +6,10 @@ export interface UqWms {
     WarehouseRoom: Tuid;
     Shelf: Tuid;
     ShelfLayer: Tuid;
-    ShelfBlock: History;
+    ShelfBlock: Tuid;
+    WarehouseStorageCondition: Tuid;
+    WarehouseStorageConditionMap: Map;
+
     SearchWarehouseByKey: Query;
     SearchWarehouseBuilding: Query;
     SearchWarehouseRoom: Query;
