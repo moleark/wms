@@ -13,7 +13,7 @@ export class VWarehouseList extends VPage<CWarehouse> {
     private renderWarehouse = (warehouse: any) => {
 
         // let { name, no: number } = warehouse;
-        let { editWarehouse, searchWarehouseBuildByKey } = this.controller;
+        let { editWarehouse, searchWarehouseRoomByKey, searchWarehouseBuildByKey } = this.controller;
         let left = <div className="p-1 cursor-pointer text-info">
             <FA name="building-o" />
         </div>
@@ -22,7 +22,7 @@ export class VWarehouseList extends VPage<CWarehouse> {
         </div>
 
         return <LMR left={left} right={right} className="px-2 py-2">
-            <div className="px-1 py-1" onClick={() => searchWarehouseBuildByKey(warehouse)}>
+            <div className="px-1 py-1" onClick={() => searchWarehouseRoomByKey(warehouse)}>
                 {tv(warehouse, v => <>{v.name}</>)}
             </div>
         </ LMR>
@@ -43,10 +43,10 @@ export class VWarehouseList extends VPage<CWarehouse> {
                 placeholder="请输入库房名称" />
         </div>;
         let footer = <button type="button" className="btn btn-primary w-100" onClick={() => newWarehouse()} >添加新库房</button>;
-        let warehousetList = <List items={warehouses} item={{ render: this.renderWarehouse }} none="无库房" />;
+        let warehouseList = <List items={warehouses} item={{ render: this.renderWarehouse }} none="无库房" />;
 
         return <Page header={header} right={right} footer={footer}>
-            {warehousetList}
+            {warehouseList}
         </Page>;
     });
 }

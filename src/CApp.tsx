@@ -2,10 +2,11 @@ import { CAppBase, IConstructor } from "tonva";
 import { UQs } from "./uqs";
 import { CUqBase } from "./CBase";
 import { VMain } from './main/main';
-import { CMessage } from './main/CMessage';
+// import { CMessage } from './main/CMessage';
 import { CHome } from "./home/CHome";
-import { CInBound } from "./inbound/CInBound";
-import { COutBound } from "./outbound/COutBound";
+import { COutInBound } from "./outinbound/index";
+import { CInBound } from "./outinbound/inbound/CInBound";
+import { COutBound } from "./outinbound/outbound/COutBound";
 import { CSetting } from "./setting/CSetting";
 import { CMe } from "./me/CMe";
 import { CWarehouse } from "../src/setting/warehouseBuild/CWarehouse";
@@ -19,6 +20,7 @@ export class CApp extends CAppBase {
     currentLanguage: any;
 
     cHome: CHome;
+    cOutInBound: COutInBound;
     cInBound: CInBound;
     cOutBound: COutBound;
     cSetting: CSetting;
@@ -34,6 +36,7 @@ export class CApp extends CAppBase {
     protected async internalStart() {
 
         this.cHome = this.newC(CHome);
+        this.cOutInBound = this.newC(COutInBound);
         this.cInBound = this.newC(CInBound);
         this.cOutBound = this.newC(COutBound);
         this.cSetting = this.newC(CSetting);

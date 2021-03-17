@@ -12,7 +12,7 @@ export class VShelfBlockList extends VPage<CWarehouse> {
 
     private renderShelfBlock = (shelfBlock: any) => {
 
-        let { name, no: number } = shelfBlock;
+        let { name } = shelfBlock;
         let { editShelfBlock } = this.controller;
         let left = <div className="p-1 cursor-pointer text-info">
             <FA name="inbox" />
@@ -30,7 +30,7 @@ export class VShelfBlockList extends VPage<CWarehouse> {
     private page = () => {
 
         let { currentShelfLayer, shelfBlocks, searchShelfBlockByKey, newShelfBlock } = this.controller;
-        let { name: shelfLayerName, no: shelfLayerNumber } = currentShelfLayer;
+        let { name: shelfLayerName } = currentShelfLayer;
 
         let header = <header>
             <div className="px-0"><span>{shelfLayerName}货位管理</span></div>

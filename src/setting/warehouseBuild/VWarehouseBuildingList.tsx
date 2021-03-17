@@ -12,7 +12,7 @@ export class VWarehouseBuildingList extends VPage<CWarehouse> {
 
     private renderWarehouseBuilding = (warehouseBuild: any) => {
 
-        let { id, name, no: number } = warehouseBuild;
+        let { name } = warehouseBuild;
         let { searchWarehouseRoomByKey, editWarehouseBuilding } = this.controller;
         let left = <div className="p-1 cursor-pointer text-info">
             <FA name="th-large" />
@@ -32,7 +32,7 @@ export class VWarehouseBuildingList extends VPage<CWarehouse> {
     private page = () => {
 
         let { currentWarehouse, warehouseBuilds, newWarehouseBuilding, searchWarehouseBuildByKey } = this.controller;
-        let { name: warehouseName, no: warehouseNumber } = currentWarehouse;
+        let { name: warehouseName } = currentWarehouse;
 
         let header = <header>
             <div className="px-0"><span>{warehouseName}库区管理</span></div>

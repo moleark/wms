@@ -1,8 +1,7 @@
 
 import * as React from 'react';
-import _ from 'lodash';
 import { Page, VPage, UiSchema, Schema, Context, UiInputItem, Form } from 'tonva';
-import { CWarehouse } from './CWarehouse';
+import { CWarehouse } from './index';
 
 const schema: Schema = [
     { name: 'id', type: 'number', required: false },

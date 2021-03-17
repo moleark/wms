@@ -1,4 +1,4 @@
-import { CUqBase } from '../CBase';
+import { CUqBase } from '../../CBase';
 import { VInBound } from './VInBound';
 
 export class CInBound extends CUqBase {

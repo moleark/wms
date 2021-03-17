@@ -77,20 +77,8 @@ export class VMe extends VPage<CMe> {
                 '',
                 {
                     type: 'component',
-                    component: <IconText iconClass="text-info mr-2" icon="tag" text="入库管理" />,
-                    onClick: null
-                },
-                {
-                    type: 'component',
-                    component: <IconText iconClass="text-info mr-2" icon="tag" text="入库管理" />,
-                    onClick: null
-                },
-                '',
-                {
-                    type: 'component',
                     component: <IconText iconClass="text-info mr-2" icon="gear" text="设置" />,
                     onClick: this.openSettingPage
-
                 },
             ]
             rows.push(...logOutRows);

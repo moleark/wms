@@ -8,18 +8,22 @@ export class VOutBound extends View<COutBound> {
     }
 
     render(param: any): JSX.Element {
-        return <this.content />
+        //return <this.content />
+        return <this.content />;
+
     }
 
     private page = () => {
         return <Page header={false}>
             <this.content />
-        </Page>;
+        </Page >;
     };
 
     private content = () => {
         return <>
-            <div>这是出库操作界面！</div>
+            <div>
+                ---
+            </div>
         </>
     };
 }

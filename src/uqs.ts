@@ -1,23 +1,32 @@
 import { Tuid, Book, Map, Query, Action } from "tonva";
 
-export interface UqWms {
+export interface UqWarehouse {
     Warehouse: Tuid;
     WarehouseBuilding: Tuid;
     WarehouseRoom: Tuid;
     Shelf: Tuid;
     ShelfLayer: Tuid;
     ShelfBlock: Tuid;
-    WarehouseStorageCondition: Tuid;
-    WarehouseStorageConditionMap: Map;
-
     SearchWarehouseByKey: Query;
     SearchWarehouseBuilding: Query;
     SearchWarehouseRoom: Query;
     SearchShelf: Query;
     SearchShelfLayer: Query;
     SearchShelfBlock: Query;
+    SearchReadyOutBoundCutTastList: Query;
+
+    StorageCondition: Tuid;
+    WarehouseStorageCondition: Tuid;
+    WarehouseStorageConditionMap: Map;
+
+    WarehouseHazardClass: Tuid;
+    HazardClass: Tuid;
+    Hazard: Tuid;
+    WarehouseHazardClassMap: Map;
+    WarehouseHazardMap: Map;
+
 }
 
 export interface UQs {
-    warehouse: UqWms;
+    warehouse: UqWarehouse
 }

@@ -118,10 +118,10 @@ export class CWarehouse extends CUqBase {
      * @param warehouseBuild
      * @param key 
      */
-    searchWarehouseRoomByKey = async (warehouseBuild: any, key?: String) => {
+    searchWarehouseRoomByKey = async (warehouse: any, key?: String) => {
 
-        this.currentWarehouseBuild = warehouseBuild;
-        this.warehouseRooms = await this.uqs.warehouse.SearchWarehouseRoom.table({ warehouseBuilding: warehouseBuild, key: key });
+        this.currentWarehouse = warehouse;
+        this.warehouseRooms = await this.uqs.warehouse.SearchWarehouseRoom.table({ warehouse: warehouse, key: key });
         this.openVPage(VWarehouseRoomList);
     };
 

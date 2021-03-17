@@ -12,7 +12,7 @@ export class VShelfList extends VPage<CWarehouse> {
 
     private renderShelf = (shelf: any) => {
 
-        let { id, name, no: number } = shelf;
+        let { name } = shelf;
         let { searchShelfLayerByKey, editShelf } = this.controller;
         let left = <div className="p-1 cursor-pointer text-info">
             <FA name="clone" />
@@ -30,7 +30,7 @@ export class VShelfList extends VPage<CWarehouse> {
     private page = () => {
 
         let { currentWarehouseRoom, shelfs, searchShelfByKey, newShelf } = this.controller;
-        let { name: warehouseRoomName, no: warehouseRoomNumber } = currentWarehouseRoom;
+        let { name: warehouseRoomName } = currentWarehouseRoom;
 
         let header = <header>
             <div className="px-0"><span>{warehouseRoomName}货架管理</span></div>
