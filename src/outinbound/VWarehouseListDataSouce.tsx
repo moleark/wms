@@ -2,16 +2,16 @@ import * as React from 'react';
 import { Page, VPage, FA, tv } from 'tonva';
 import { COutInBound } from './index';
 import { observer } from 'mobx-react';
+import { CSlectWarehouse } from './COutInBound';
 
-export class VWarehouseListDataSouce extends VPage<COutInBound> {
+export class VWarehouseListDataSouce extends VPage<CSlectWarehouse> {
 
-    private warehouseList: any;
+    private warehouses: any;
 
     async open(warehouseList: any) {
 
-        let warehouses = await this.controller.loadWarehouseList();
-        this.warehouseList = warehouseList;
-        this.openPage(this.page, { warehouses: warehouses });
+        this.warehouses = await this.controller.loadWarehouseList();
+        this.openPage(this.page);
     }
 
     private renderWarehouseList = (warehouse: any, onClick: any) => {
@@ -24,7 +24,7 @@ export class VWarehouseListDataSouce extends VPage<COutInBound> {
                         style={{ border: '1px solid #eeeeee', marginRight: '-1px', marginBottom: '-1px' }}
                     >
                         <span className="ml-2 align-middle">
-                            <FA name="thermometer-half" className="text-info small" />
+                            <FA name="building" className="text-info small" />
                             &nbsp; {name}
                         </span>
                     </div>
@@ -38,7 +38,7 @@ export class VWarehouseListDataSouce extends VPage<COutInBound> {
         return <Page header="请选择要操作的库房">
 
             <div className="row no-gutters">
-                {param.warehouses.map((v: any) => this.renderWarehouseList(v, this.onSelectClick))}
+                {this.warehouses.map((v: any) => this.renderWarehouseList(v, this.onSelectClick))}
             </div>
         </Page>
     });

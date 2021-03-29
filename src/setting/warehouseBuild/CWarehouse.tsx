@@ -210,6 +210,7 @@ export class CWarehouse extends CUqBase {
         this.shelfLayers = await this.uqs.warehouse.SearchShelfLayer.table({ shelf: shelf, key: key });
         this.openVPage(VShelfLayerList);
     };
+
     /**
      * 打开新建货架层界面
      */

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Page, VPage, FA, View, Prop, IconText, PropGrid } from 'tonva';
 import { COutInBound } from './COutInBound';
+import { observer } from 'mobx-react';
 
 export class VOutInBound extends View<COutInBound> {
 
@@ -12,7 +13,7 @@ export class VOutInBound extends View<COutInBound> {
         return <this.page />
     }
 
-    private page = () => {
+    private page = observer(() => {
 
         let { searchWarehouseList, searchReadyOutBoundCutTastList, warehouse } = this.controller;
 
@@ -22,12 +23,12 @@ export class VOutInBound extends View<COutInBound> {
 
         let right = warehouse !== undefined ?
             <div className="d-flex justify-content-between">
-                <span className="px-1 py-1" style={{ fontSize: 'small', color: 'yellow' }} onClick={() => searchWarehouseList()}>
+                <span className="px-2 py-1" style={{ fontSize: 'smaller', color: 'yellow' }} onClick={() => searchWarehouseList()}>
                     {warehouse.name} <FA name="search" />
                 </span>
             </div> :
             <div className="d-flex justify-content-between">
-                <span className="px-1 py-1" style={{ fontSize: 'small', color: 'red' }} onClick={() => searchWarehouseList()}>
+                <span className="px-2 py-1 red" style={{ fontSize: 'smaller', color: 'red' }} onClick={() => searchWarehouseList()}>
                     请选择库房 <FA name="search" />
                 </span>
             </div>;
@@ -61,5 +62,5 @@ export class VOutInBound extends View<COutInBound> {
         return <Page header={header} right={right}>
             <PropGrid rows={rows} values={{}} />
         </Page >;
-    };
+    });
 }
