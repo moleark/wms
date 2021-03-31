@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Page, VPage, FA, View, Prop, IconText, PropGrid } from 'tonva';
+import { Page, FA, View, Prop, IconText, PropGrid } from 'tonva';
 import { COutInBound } from './COutInBound';
 import { observer } from 'mobx-react';
 

@@ -14,7 +14,9 @@ export interface UqWarehouse {
     SearchShelfLayer: Query;
     SearchShelfBlock: Query;
     SearchReadyOutBoundCutTastList: Query;  // 查询待出库截单任务列表
-    OutBoundCut: Action;    // 出库截单
+    OutBoundCut: Action;                // 出库截单
+    SearchOutBoundOrderList: Query;     // 查询出库单号列表
+    SearchOutBoundOrderDetail: Query;   // 查询出库单详情
 
     StorageCondition: Tuid;
     WarehouseStorageCondition: Tuid;

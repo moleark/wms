@@ -1,15 +1,17 @@
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { Page, VPage, FA, List, LMR, tv } from 'tonva';
+import { Page, VPage, List, tv, DropdownActions, DropdownAction } from 'tonva';
 import { COutBound } from './COutBound';
 
 export class VReadyOutBoundCut extends VPage<COutBound> {
 
     readyOutBoundList: any[];
+    warehouse: any;
 
     async open(outBoundList: any) {
         let { readyOutBoundList, warehouse } = outBoundList;
         this.readyOutBoundList = readyOutBoundList;
+        this.warehouse = warehouse;
         //this.controller.warehouse = warehouse;
         this.openPage(this.page);
     }
@@ -20,7 +22,7 @@ export class VReadyOutBoundCut extends VPage<COutBound> {
 
         return <div className="row d-flex px-2 py-1">
             <div className="col-12">
-                <div className="row small">
+                <div className="row">
                     <div className="col-1 text-muted">{$id}</div>
                     <div className="col-8"><strong>{consigneeUnitName}</strong></div>
                     <div className="col-3"><strong>{consigneeName}</strong></div>
@@ -42,6 +44,10 @@ export class VReadyOutBoundCut extends VPage<COutBound> {
         </div>
     };
 
+    private openOutBoundOrderHistoryPage = async () => {
+        this.controller.openOutBoundOrderHistoryPage(this.warehouse);
+    }
+
     private page = observer(() => {
 
         let { outBoundCutOff } = this.controller;
@@ -49,10 +55,19 @@ export class VReadyOutBoundCut extends VPage<COutBound> {
             <div className="px-0"><span>待出库任务列表</span></div>
         </header>;
 
+        let actions: DropdownAction[] = [
+            {
+                icon: 'book',
+                caption: '出库单历史',
+                action: this.openOutBoundOrderHistoryPage
+            }
+        ];
+        let right = <DropdownActions className="align-self-center mr-1" icon="ellipsis-h" actions={actions} />;
+
         let footer = <button type="button" className="btn btn-primary w-100" onClick={() => outBoundCutOff()} >截单</button>;
         let tastList = <List items={this.readyOutBoundList} item={{ render: this.renderReadyOutBoundCut }} none="无待截单数据" />;
 
-        return <Page header={header} footer={footer}>
+        return <Page header={header} right={right} footer={footer}>
             {tastList}
         </Page>
     });

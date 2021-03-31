@@ -14,7 +14,7 @@ export class VMain extends VPage<CApp> {
     }
 
     render = (param?: any): JSX.Element => {
-        let { cHome, cOutInBound, cInBound, cOutBound, cMe } = this.controller;
+        let { cHome, cOutInBound, cMe } = this.controller;
         let faceTabs = [
             { name: 'home', label: '首页', icon: 'home', content: cHome.tab, notify: undefined },
             //{ name: 'inbound', label: '入库', icon: 'sign-in', content: cInBound.tab, notify: undefined },

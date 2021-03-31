@@ -13,7 +13,7 @@ export class VWarehouseList extends VPage<CWarehouse> {
     private renderWarehouse = (warehouse: any) => {
 
         // let { name, no: number } = warehouse;
-        let { editWarehouse, searchWarehouseRoomByKey, searchWarehouseBuildByKey } = this.controller;
+        let { editWarehouse, searchWarehouseRoomByKey } = this.controller;
         let left = <div className="p-1 cursor-pointer text-info">
             <FA name="building-o" />
         </div>

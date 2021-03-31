@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Page, VPage, FA, tv } from 'tonva';
-import { COutInBound } from './index';
 import { observer } from 'mobx-react';
 import { CSlectWarehouse } from './COutInBound';
 
