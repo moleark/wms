@@ -2,10 +2,10 @@ import * as React from 'react';
 import { VPage, Page } from 'tonva';
 import { COutBound } from "./COutBound";
 
-export class VOutBoundOrderInfo extends VPage<COutBound> {
+export class VOutBoundOrderDetail extends VPage<COutBound> {
 
-    async open(outBoundOrderInfo: any) {
-        this.openPage(this.page, outBoundOrderInfo);
+    async open(outBoundOrderId: number) {
+        this.openPage(this.page, outBoundOrderId);
     }
 
     private page = (outBoundOrderInfo: any) => {

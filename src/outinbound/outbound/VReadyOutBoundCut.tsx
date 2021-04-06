@@ -18,14 +18,14 @@ export class VReadyOutBoundCut extends VPage<COutBound> {
 
     private renderReadyOutBoundCut(readyOutBoundList: any) {
 
-        let { $id, consigneeUnitName, consigneeName, product, pack, quantity, createTime, warehouse, outBoundReason } = readyOutBoundList;
+        let { $id, consigneeUnitName, consigneeName, product, pack, quantity, outBoundTime, warehouse, outBoundReason } = readyOutBoundList;
+        // <div className="col-1 text-muted">{$id}</div>
 
         return <div className="row d-flex px-2 py-1">
             <div className="col-12">
                 <div className="row">
-                    <div className="col-1 text-muted">{$id}</div>
                     <div className="col-8"><strong>{consigneeUnitName}</strong></div>
-                    <div className="col-3"><strong>{consigneeName}</strong></div>
+                    <div className="col-4 small"><strong>{consigneeName}</strong></div>
                 </div>
                 <div className="row py-1">
                     <div className="col-3 text-muted">
@@ -36,7 +36,7 @@ export class VReadyOutBoundCut extends VPage<COutBound> {
                             {tv(product, (values: any) => <>{item("产品编号", values.origin)}</>)}
                             {tv(pack, (values: any) => <>{item("包装", tvPackx(values))}</>)}
                             {item('数量', quantity)}
-                            {item('创建时间', createTime)}
+                            {item('创建时间', outBoundTime)}
                         </div>
                     </div>
                 </div>

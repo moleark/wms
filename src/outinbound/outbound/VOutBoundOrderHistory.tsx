@@ -1,43 +1,44 @@
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { VPage, Page, List, FA, LMR, tv } from 'tonva';
+import { VPage, Page, List, FA, LMR, tv, EasyTime } from 'tonva';
 import { COutBound } from "./COutBound";
+import { VOutBoundOrderDetail } from "./VOutBoundOrderDetail";
 
 export class VOutBoundOrderHistory extends VPage<COutBound> {
 
     outBoundOrderList: any;
-
     async open(outBoundOrderList: any) {
         this.outBoundOrderList = outBoundOrderList;
         this.openPage(this.page);
     }
 
-    private renderOutBoundOrder(outBoundOrderList: any) {
+    public openOutBoundOrderDetailVPage = async (id: any) => {
+        //this.openVPage(VOutBoundOrderDetail, outBoundOrderId);
+        alert(id);
+        this.controller.openOutBoundOrderDetailPage(id);
+    }
 
-        let { $id, id, warehouse, operator, state, createTime } = outBoundOrderList;
+    private renderOutBoundOrder(outBoundOrder: any) {
 
-        let left = <div className="p-1 cursor-pointer text-info">
-            <FA name="building-o" />
-        </div>
-        let right = <div className="p-1 cursor-pointer text-info" onClick={() => undefined}>
-            <FA name="edit" />
-        </div>
+        let { $id, id, warehouse, operator, state, createTime } = outBoundOrder;
+        let isConfirm = (state == 0) ? '未确认' : '已确认';
 
         return <div className="row d-flex px-2 py-1">
             <div className="col-12">
                 <div className="row">
-                    <div className="col-1 text-muted"><strong>{$id}</strong></div>
-                    <div className="col-7" onClick={() => undefined}>出库单号：<strong>{id}</strong></div>
-                    <div className="col-4">{tv(warehouse, v => <>{v.name}</>)}</div>
+
+                    <div className="col-5" onClick={() => this.openOutBoundOrderDetailVPage(id)}>出库单号：<strong>{id}</strong></div>
+                    <div className="col-1" ></div>
+                    <div className="col-6">{tv(warehouse, v => <>{v.name}</>)}</div>
                 </div>
                 <div className="row py-1">
                     <div className="col-3 text-muted">
-                        <span className="px-1">{state}</span>
+                        {isConfirm}
                     </div>
                     <div className="col-9">
                         <div className="row">
                             <strong>{tv(operator, v => <>{v.name}</>)}</strong>
-                            <div className="col-8">{tv(createTime)}</div>
+                            <div className="col-8"><EasyTime date={createTime} /></div>
                         </div>
                     </div>
                 </div>

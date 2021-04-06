@@ -32,7 +32,7 @@ export class COutInBound extends CUqBase {
      */
     searchReadyOutBoundCutTastList = async () => {
         let { cOutBound } = this.cApp
-        await cOutBound.openReadyOutBoundPage(this.warehouse);
+        await cOutBound.openReadyOutBoundCutPage(this.warehouse);
         // if (this.warehouse !== undefined) {
         //     this.readyOutBoundList = await this.uqs.warehouse.SearchReadyOutBoundCutTastList.table({ warehouse: this.warehouse.id });
         //     let outBoundList: any = { readyOutBoundList: this.readyOutBoundList, warehouse: this.warehouse };

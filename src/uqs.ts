@@ -1,6 +1,7 @@
 import { Tuid, Book, Map, Query, Action } from "tonva";
 
 export interface UqWarehouse {
+    $user: Tuid;
     Warehouse: Tuid;
     WarehouseBuilding: Tuid;
     WarehouseRoom: Tuid;
@@ -27,9 +28,17 @@ export interface UqWarehouse {
     Hazard: Tuid;
     WarehouseHazardClassMap: Map;
     WarehouseHazardMap: Map;
+}
 
+export interface UqWebUser {
+    WebUser: Tuid;
+    WebUserContact: Map;
+    webUserSetting: Map;
+    WebUserCustomer: Map;
+    WebUserContacts: Map;
 }
 
 export interface UQs {
-    warehouse: UqWarehouse
+    warehouse: UqWarehouse,
+    webUser: UqWebUser
 }
