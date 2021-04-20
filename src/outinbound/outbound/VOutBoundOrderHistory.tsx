@@ -1,8 +1,11 @@
 import { observer } from 'mobx-react';
 import * as React from 'react';
-import { VPage, Page, List, FA, LMR, tv, EasyTime } from 'tonva';
+import { VPage, Page, List, FA, LMR, tv, EasyTime, EasyDate } from 'tonva';
 import { COutBound } from "./COutBound";
+import { format, addHours } from 'date-fns';
 import { VOutBoundOrderDetail } from "./VOutBoundOrderDetail";
+
+document.title = "库房管理系统";
 
 export class VOutBoundOrderHistory extends VPage<COutBound> {
 
@@ -12,35 +15,29 @@ export class VOutBoundOrderHistory extends VPage<COutBound> {
         this.openPage(this.page);
     }
 
-    public openOutBoundOrderDetailVPage = async (id: any) => {
+    public openOutBoundOrderDetailVPage = async (outBoundOrderId: any) => {
         //this.openVPage(VOutBoundOrderDetail, outBoundOrderId);
-        alert(id);
-        this.controller.openOutBoundOrderDetailPage(id);
+        this.controller.openOutBoundOrderDetailPage(outBoundOrderId);
     }
 
-    private renderOutBoundOrder(outBoundOrder: any) {
+    private renderOutBoundOrder = (outBoundOrder: any) => {
 
-        let { $id, id, warehouse, operator, state, createTime } = outBoundOrder;
-        let isConfirm = (state == 0) ? '未确认' : '已确认';
+        let { openOutBoundOrderDetailPage } = this.controller;
+        let { $id, id: outBoundOrderId, warehouse, operator, state, createTime } = outBoundOrder;
+        let converter: number | Date = addHours(createTime, 8);
+        let isConfirm: string = (state == 0) ? '未确认' : '已确认';
 
         return <div className="row d-flex px-2 py-1">
             <div className="col-12">
                 <div className="row">
-
-                    <div className="col-5" onClick={() => this.openOutBoundOrderDetailVPage(id)}>出库单号：<strong>{id}</strong></div>
-                    <div className="col-1" ></div>
-                    <div className="col-6">{tv(warehouse, v => <>{v.name}</>)}</div>
+                    <div className="col-5" onClick={() => openOutBoundOrderDetailPage(outBoundOrderId)}>出库单号：<strong>{outBoundOrderId}</strong></div>
+                    <div className="col-4">{tv(warehouse, v => <>{v.name}</>)}</div>
+                    <div className="col-3 text-muted" >{isConfirm}</div>
                 </div>
                 <div className="row py-1">
-                    <div className="col-3 text-muted">
-                        {isConfirm}
-                    </div>
-                    <div className="col-9">
-                        <div className="row">
-                            <strong>{tv(operator, v => <>{v.name}</>)}</strong>
-                            <div className="col-8"><EasyTime date={createTime} /></div>
-                        </div>
-                    </div>
+                    <div className="col-4">{tv(operator, v => <>{v.name}</>)}</div>
+                    <div className="col-1"></div>
+                    <div className="col-7">{format(converter, 'yyyy-MM-dd HH:mm')}</div>
                 </div>
             </div>
         </div>

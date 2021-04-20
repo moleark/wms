@@ -30,15 +30,6 @@ export interface UqWarehouse {
     WarehouseHazardMap: Map;
 }
 
-export interface UqWebUser {
-    WebUser: Tuid;
-    WebUserContact: Map;
-    webUserSetting: Map;
-    WebUserCustomer: Map;
-    WebUserContacts: Map;
-}
-
 export interface UQs {
-    warehouse: UqWarehouse,
-    webUser: UqWebUser
+    warehouse: UqWarehouse
 }

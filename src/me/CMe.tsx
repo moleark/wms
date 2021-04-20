@@ -9,6 +9,7 @@ export class CMe extends CUqBase {
         this.openVPage(VMe);
     }
 
+
     tab = () => this.renderView(VMe);
 
     openSettingPage = async () => {

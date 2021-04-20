@@ -1,8 +1,6 @@
 import { CUqBase } from '../CBase';
 import { VOutInBound } from './index';
 import { VWarehouseListDataSouce } from './VWarehouseListDataSouce';
-import { VReadyOutBoundCut } from './outbound/VReadyOutBoundCut';
-import { COutBound, VOutBound } from './outbound';
 import { observable } from 'mobx';
 
 export class COutInBound extends CUqBase {
@@ -41,7 +39,6 @@ export class COutInBound extends CUqBase {
         //     await cOutBound.showReadyOutBoundPage(outBoundList);
         // }
     }
-
     tab = () => this.renderView(VOutInBound);
 }
 

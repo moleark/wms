@@ -12,24 +12,22 @@ export class VReadyOutBoundCut extends VPage<COutBound> {
         let { readyOutBoundList, warehouse } = outBoundList;
         this.readyOutBoundList = readyOutBoundList;
         this.warehouse = warehouse;
-        //this.controller.warehouse = warehouse;
         this.openPage(this.page);
     }
 
     private renderReadyOutBoundCut(readyOutBoundList: any) {
 
-        let { $id, consigneeUnitName, consigneeName, product, pack, quantity, outBoundTime, warehouse, outBoundReason } = readyOutBoundList;
-        // <div className="col-1 text-muted">{$id}</div>
+        let { $id, consigneeUnitName, consigneeName, product, pack, quantity, outBoundTime, outBoundReason } = readyOutBoundList;
 
-        return <div className="row d-flex px-2 py-1">
+        return <div className="row d-flex px-1 py-1">
             <div className="col-12">
                 <div className="row">
                     <div className="col-8"><strong>{consigneeUnitName}</strong></div>
-                    <div className="col-4 small"><strong>{consigneeName}</strong></div>
+                    <div className="col-4"><strong>{consigneeName}</strong></div>
                 </div>
                 <div className="row py-1">
                     <div className="col-3 text-muted">
-                        <span className="px-1">{tv(outBoundReason, (values: any) => <>{values.name}</>)}</span>
+                        {tv(outBoundReason, (values: any) => <>{values.name}</>)}
                     </div>
                     <div className="col-9">
                         <div className="row">
@@ -44,6 +42,7 @@ export class VReadyOutBoundCut extends VPage<COutBound> {
         </div>
     };
 
+    // 打开出库单历史界面
     private openOutBoundOrderHistoryPage = async () => {
         this.controller.openOutBoundOrderHistoryPage(this.warehouse);
     }
@@ -62,8 +61,8 @@ export class VReadyOutBoundCut extends VPage<COutBound> {
                 action: this.openOutBoundOrderHistoryPage
             }
         ];
-        let right = <DropdownActions className="align-self-center mr-1" icon="ellipsis-h" actions={actions} />;
 
+        let right = <DropdownActions className="align-self-center mr-1" icon="ellipsis-v" actions={actions} />;
         let footer = <button type="button" className="btn btn-primary w-100" onClick={() => outBoundCutOff()} >截单</button>;
         let tastList = <List items={this.readyOutBoundList} item={{ render: this.renderReadyOutBoundCut }} none="无待截单数据" />;
 

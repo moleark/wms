@@ -1,4 +1,4 @@
-import { CAppBase, IConstructor } from "tonva";
+import { CAppBase, IConstructor, nav } from "tonva";
 import { UQs } from "./uqs";
 import { CUqBase } from "./CBase";
 import { VMain } from './main/main';
@@ -12,8 +12,10 @@ import { CMe } from "./me/CMe";
 import { CWarehouse } from "../src/setting/warehouseBuild/CWarehouse";
 import { CStorageCondition } from "../src/setting/storageCondition/CStorageCondition";
 
+document.title = "库房管理系统";
+
 export class CApp extends CAppBase {
-    get uqs(): UQs { return this._uqs as UQs };
+    // get uqs(): UQs { return this._uqs as UQs };
 
     topKey: any;
     currentSalesRegion: any;
@@ -50,6 +52,7 @@ export class CApp extends CAppBase {
 
     showMain(initTabName?: string) {
         this.openVPage(VMain, initTabName);
+        let divLogin = document.getElementById('login');
     }
 
 }

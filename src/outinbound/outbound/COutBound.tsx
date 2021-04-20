@@ -4,11 +4,14 @@ import { observable } from 'mobx';
 import { VCutOffSuccess } from './VCutOffSuccess';
 import { VOutBoundOrderHistory } from './VOutBoundOrderHistory';
 import { VOutBoundOrderDetail } from './VOutBoundOrderDetail';
+import { VOffShelfList } from './VOffShelfList';
+import { VTallyList } from './VTallyList';
 
 export class COutBound extends CUqBase {
 
     @observable warehouse: any;
     readyOutBoundList: any[];
+    outBoundOrderDetail: any[];
 
     async internalStart(param: any) {
         this.openVPage(VOutBound);
@@ -45,6 +48,16 @@ export class COutBound extends CUqBase {
 
         let outBoundOrderInfo = await this.uqs.warehouse.SearchOutBoundOrderDetail.table({ outBoundOrder: outBoundOrderId });
         this.openVPage(VOutBoundOrderDetail, outBoundOrderInfo);
+    }
+
+    // 打开打印出库单界面
+    openOffShelfListPage = async (outBoundOrderInfo: any) => {
+        this.openVPage(VOffShelfList, outBoundOrderInfo);
+    }
+
+    // 打开打印理货单界面
+    openTallyListPage = async (outBoundOrderInfo: any) => {
+        this.openVPage(VTallyList, outBoundOrderInfo)
     }
 
 }

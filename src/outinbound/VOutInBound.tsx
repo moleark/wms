@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Page, FA, View, Prop, IconText, PropGrid } from 'tonva';
 import { COutInBound } from './COutInBound';
 import { observer } from 'mobx-react';
+import { dropRight, flowRight } from 'lodash';
 
 export class VOutInBound extends View<COutInBound> {
 
@@ -22,15 +23,11 @@ export class VOutInBound extends View<COutInBound> {
         </header>;
 
         let right = warehouse !== undefined ?
-            <div className="d-flex justify-content-between">
-                <span className="px-2 py-1" style={{ fontSize: 'smaller', color: 'yellow' }} onClick={() => searchWarehouseList()}>
-                    {warehouse.name} <FA name="search" />
-                </span>
+            <div className="d-flex justify-content-between mr-1 my-2" onClick={() => searchWarehouseList()}>
+                <span className="text-info"><FA className="mr-1" name="search" />{warehouse.name}</span>
             </div> :
-            <div className="d-flex justify-content-between">
-                <span className="px-2 py-1 red" style={{ fontSize: 'smaller', color: 'red' }} onClick={() => searchWarehouseList()}>
-                    请选择库房 <FA name="search" />
-                </span>
+            <div className="d-flex justify-content-between mr-1 my-2" onClick={() => searchWarehouseList()}>
+                <span className="text-info"><FA className="mr-1" name="search" />请选择库房</span>
             </div>;
 
         let rows: Prop[];
@@ -43,6 +40,16 @@ export class VOutInBound extends View<COutInBound> {
             {
                 type: 'component',
                 component: <IconText iconClass="text-info mr-2" icon="info-circle" text="发货查询" />,
+                onClick: null
+            },
+            {
+                type: 'component',
+                component: <IconText iconClass="text-info mr-2" icon="info-circle" text="出库单列表" />,
+                onClick: null
+            },
+            {
+                type: 'component',
+                component: <IconText iconClass="text-info mr-2" icon="info-circle" text="入库单列表" />,
                 onClick: null
             },
             '',
@@ -60,7 +67,7 @@ export class VOutInBound extends View<COutInBound> {
         ]
 
         return <Page header={header} right={right}>
-            <PropGrid rows={rows} values={{}} />
+            <PropGrid className="px-2" rows={rows} values={{}} />
         </Page >;
     });
 }
