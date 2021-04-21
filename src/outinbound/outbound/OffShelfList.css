@@ -3,16 +3,18 @@
     height: auto;
     overflow-x: hidden;
     overflow-y: auto;
-    page-break-before:always;
+    /*page-break-before:always;*/
+    page-break-before: auto;
+    page-break-after: always;
 }
 
 .printPage::-webkit-scrollbar {
-    /*display:none;*/
+    display:none;
 }
 
 
 .dvH {
-    height: 60px;
+    height: auto;
     padding-top: 10px;
 }
 
@@ -47,3 +49,7 @@
         margin-left: 10px;
     }
 
+#printShelfListPage {
+    visibility:hidden;
+    display: none;
+}
