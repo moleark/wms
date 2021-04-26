@@ -14,11 +14,13 @@ export class COutBound extends CUqBase {
     outBoundOrderDetail: any[];
 
     async internalStart(param: any) {
+
         this.openVPage(VOutBound);
     }
 
-    // 待出库截单界面
+    // 出库任务处理界面
     async openReadyOutBoundCutPage(warehouse: any) {
+
         this.warehouse = warehouse;
         if (warehouse !== undefined) {
             this.readyOutBoundList = await this.uqs.warehouse.SearchReadyOutBoundCutTastList.table({ warehouse: warehouse.id });
@@ -39,24 +41,30 @@ export class COutBound extends CUqBase {
     // 打开出库单历史界面
     async openOutBoundOrderHistoryPage(warehouse: any) {
 
-        let outBoundOrderList = await this.uqs.warehouse.SearchOutBoundOrderList.table({ warehouse: warehouse.id });
-        this.openVPage(VOutBoundOrderHistory, outBoundOrderList);
+        this.warehouse = warehouse;
+        if (warehouse !== undefined) {
+            let outBoundOrderList = await this.uqs.warehouse.SearchOutBoundOrderList.table({ warehouse: warehouse.id });
+            this.openVPage(VOutBoundOrderHistory, outBoundOrderList);
+        }
     }
 
     // 打开出库单详情界面
     openOutBoundOrderDetailPage = async (outBoundOrderId: any) => {
 
-        let outBoundOrderInfo = await this.uqs.warehouse.SearchOutBoundOrderDetail.table({ outBoundOrder: outBoundOrderId });
+        let outBoundOrderDetail = await this.uqs.warehouse.SearchOutBoundOrderDetail.table({ outBoundOrder: outBoundOrderId });
+        let outBoundOrderInfo = { outBoundOrderId: outBoundOrderId, outBoundOrderInfo: outBoundOrderDetail };
         this.openVPage(VOutBoundOrderDetail, outBoundOrderInfo);
     }
 
     // 打开打印出库单界面
     openOffShelfListPage = async (outBoundOrderInfo: any) => {
+
         this.openVPage(VOffShelfList, outBoundOrderInfo);
     }
 
     // 打开打印理货单界面
     openTallyListPage = async (outBoundOrderInfo: any) => {
+
         this.openVPage(VTallyList, outBoundOrderInfo)
     }
 

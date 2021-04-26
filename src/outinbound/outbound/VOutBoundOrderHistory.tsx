@@ -5,18 +5,17 @@ import { COutBound } from "./COutBound";
 import { format, addHours } from 'date-fns';
 import { VOutBoundOrderDetail } from "./VOutBoundOrderDetail";
 
-document.title = "库房管理系统";
-
 export class VOutBoundOrderHistory extends VPage<COutBound> {
 
     outBoundOrderList: any;
     async open(outBoundOrderList: any) {
+
         this.outBoundOrderList = outBoundOrderList;
         this.openPage(this.page);
     }
 
     public openOutBoundOrderDetailVPage = async (outBoundOrderId: any) => {
-        //this.openVPage(VOutBoundOrderDetail, outBoundOrderId);
+
         this.controller.openOutBoundOrderDetailPage(outBoundOrderId);
     }
 
@@ -24,6 +23,7 @@ export class VOutBoundOrderHistory extends VPage<COutBound> {
 
         let { openOutBoundOrderDetailPage } = this.controller;
         let { $id, id: outBoundOrderId, warehouse, operator, state, createTime } = outBoundOrder;
+
         let converter: number | Date = addHours(createTime, 8);
         let isConfirm: string = (state == 0) ? '未确认' : '已确认';
 
@@ -48,7 +48,6 @@ export class VOutBoundOrderHistory extends VPage<COutBound> {
         let header = <header>
             <div className="px-0"><span>出库单列表</span></div>
         </header>;
-
         let outBoundOrderLists = <List items={this.outBoundOrderList} item={{ render: this.renderOutBoundOrder }} none="无出库单数据" />;
 
         return <Page header={header} back="close">

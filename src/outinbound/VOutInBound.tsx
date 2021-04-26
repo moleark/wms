@@ -16,7 +16,7 @@ export class VOutInBound extends View<COutInBound> {
 
     private page = observer(() => {
 
-        let { searchWarehouseList, searchReadyOutBoundCutTastList, warehouse } = this.controller;
+        let { searchWarehouseList, searchReadyOutBoundCutTastList, openOutBoundOrderHistory, warehouse } = this.controller;
 
         let header = <header>
             <div className="px-2"><span>库存管理</span></div>
@@ -27,7 +27,7 @@ export class VOutInBound extends View<COutInBound> {
                 <span className="text-info"><FA className="mr-1" name="search" />{warehouse.name}</span>
             </div> :
             <div className="d-flex justify-content-between mr-1 my-2" onClick={() => searchWarehouseList()}>
-                <span className="text-info"><FA className="mr-1" name="search" />请选择库房</span>
+                <span className="cursor-pointer text-info"><FA className="mr-1" name="search" />请选择库房</span>
             </div>;
 
         let rows: Prop[];
@@ -44,12 +44,12 @@ export class VOutInBound extends View<COutInBound> {
             },
             {
                 type: 'component',
-                component: <IconText iconClass="text-info mr-2" icon="info-circle" text="出库单列表" />,
-                onClick: null
+                component: <IconText iconClass="text-info mr-2" icon="info-circle" text="出库单历史" />,
+                onClick: openOutBoundOrderHistory
             },
             {
                 type: 'component',
-                component: <IconText iconClass="text-info mr-2" icon="info-circle" text="入库单列表" />,
+                component: <IconText iconClass="text-info mr-2" icon="info-circle" text="入库单历史" />,
                 onClick: null
             },
             '',

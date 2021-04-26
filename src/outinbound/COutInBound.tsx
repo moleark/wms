@@ -15,11 +15,13 @@ export class COutInBound extends CUqBase {
 
     // 查询所有库房列表
     loadWarehouseList = async () => {
+
         return await this.uqs.warehouse.Warehouse.all();
     }
 
     // 查询库房列表数据源
     searchWarehouseList = async () => {
+
         let cSlectWarehouse = this.newC(CSlectWarehouse);
         this.warehouse = await cSlectWarehouse.call<any>(true);
     }
@@ -29,6 +31,7 @@ export class COutInBound extends CUqBase {
      * @param key 
      */
     searchReadyOutBoundCutTastList = async () => {
+
         let { cOutBound } = this.cApp
         await cOutBound.openReadyOutBoundCutPage(this.warehouse);
         // if (this.warehouse !== undefined) {
@@ -39,22 +42,34 @@ export class COutInBound extends CUqBase {
         //     await cOutBound.showReadyOutBoundPage(outBoundList);
         // }
     }
+
+    // 打开出库单历史界面
+    openOutBoundOrderHistory = async () => {
+
+        let { cOutBound } = this.cApp
+        await cOutBound.openOutBoundOrderHistoryPage(this.warehouse);
+    }
+
     tab = () => this.renderView(VOutInBound);
 }
 
+// 选择库房
 export class CSlectWarehouse extends CUqBase {
 
     async internalStart(fromOrderCreation: boolean/*contactType: ContactType*/) {
+
         this.openVPage(VWarehouseListDataSouce);
     }
 
     // 查询所有库房列表
     loadWarehouseList = async () => {
+
         return await this.uqs.warehouse.Warehouse.all();
     }
 
     // 选中库房执行
     selectedWarehouse = async (warehouse: any) => {
+
         this.backPage();
         this.returnCall(warehouse);
     }
