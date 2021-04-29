@@ -52,7 +52,7 @@ export class CApp extends CAppBase {
 
     showMain(initTabName?: string) {
         this.openVPage(VMain, initTabName);
-        let divLogin = document.getElementById('login');
+        // let divLogin = document.getElementById('login');
     }
 
 }

@@ -13,6 +13,14 @@ export class COutInBound extends CUqBase {
         this.renderView(VOutInBound);
     }
 
+    /**
+     *
+     * 显示图标
+     */
+    renderCartLabel() {
+        // return this.renderView(VCartLabel);
+    }
+
     // 查询所有库房列表
     loadWarehouseList = async () => {
 

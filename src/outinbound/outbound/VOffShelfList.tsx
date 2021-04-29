@@ -14,7 +14,7 @@ export class VOffShelfList extends VPage<COutBound> {
     tempCount: number = 0;            // 循环控制数据明细列表，默认为0
     firstTempheight: number = 0;      // 首页动态数据要显示的高度
     nextTempheight: number = 0;       // 下一页动态数据要显示的高度
-    pageHeight: number = window.innerHeight;    // 当前页面显示高度
+    pageHeight: number = window.innerHeight - 10;    // 当前页面显示高度
 
     async open(outBoundOrderInfo?: any) {
 
@@ -70,13 +70,15 @@ export class VOffShelfList extends VPage<COutBound> {
         this.firstTempheight = (this.pageHeight - topDivHeight - titleDiv); // 首页动态高度设置
         this.nextTempheight = (this.pageHeight - topDivHeight - titleDiv);  // 中间页动态高度设置
 
-        /*alert("显示器显示高度：" + this.pageHeight);
-        alert("topDiv高度：" + topDivHeight);
-        alert("titleDiv高度：" + titleDiv);
-        alert("itemListDiv高度：" + itemListDivHeight);
-        alert("footerDiv高度：" + footerDiv);
-        alert("首页动态高度设置高度：" + this.firstTempheight);
-        alert("中间页动态高度高度：" + this.nextTempheight);*/
+        /*
+            alert("显示器显示高度：" + this.pageHeight);
+            alert("topDiv高度：" + topDivHeight);
+            alert("titleDiv高度：" + titleDiv);
+            alert("itemListDiv高度：" + itemListDivHeight);
+            alert("footerDiv高度：" + footerDiv);
+            alert("首页动态高度设置高度：" + this.firstTempheight);
+            alert("中间页动态高度高度：" + this.nextTempheight);
+        */
 
         let elem: string = document.getElementById('itemListDiv').innerHTML;    // 数据列表Div内容
         let itemList: Element = document.getElementById('itemListDiv');         // 获取 itemListDiv Div元素
@@ -114,7 +116,6 @@ export class VOffShelfList extends VPage<COutBound> {
                     } else {
                         if (index == (pageNum - 1) || (this.tempCount + 1) == itemListUlLi.length) {
                             // 尾页
-                            //index++;
                             let lastbodyhtml: string = await this.createOtherHtml("last", itemListUlLi);
                             pageHtml = pageHtml + headHtml + titleHtml + lastbodyhtml + footerHtml;
                         } else {
