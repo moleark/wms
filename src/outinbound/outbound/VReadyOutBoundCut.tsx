@@ -2,6 +2,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { Page, VPage, List, tv, DropdownActions, DropdownAction } from 'tonva';
 import { COutBound } from './COutBound';
+import { format } from 'date-fns';
 
 export class VReadyOutBoundCut extends VPage<COutBound> {
 
@@ -34,7 +35,7 @@ export class VReadyOutBoundCut extends VPage<COutBound> {
                             {tv(product, (values: any) => <>{item("产品编号", values.origin)}</>)}
                             {tv(pack, (values: any) => <>{item("包装", tvPackx(values))}</>)}
                             {item('数量', quantity)}
-                            {item('创建时间', outBoundTime)}
+                            {item('出库时间', format(outBoundTime, 'yyyy-MM-dd HH:mm'))}
                         </div>
                     </div>
                 </div>

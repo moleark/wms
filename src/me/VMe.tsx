@@ -64,7 +64,7 @@ export class VMe extends VPage<CMe> {
                     bk: '',
                     component: <button className="btn btn-danger w-100" onClick={this.exit}>
                         <FA name="sign-out" size="lg" /> 退出登录
-                </button>
+                    </button>
                 },
             ];
 

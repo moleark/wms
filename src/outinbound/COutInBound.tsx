@@ -13,20 +13,6 @@ export class COutInBound extends CUqBase {
         this.renderView(VOutInBound);
     }
 
-    /**
-     *
-     * 显示图标
-     */
-    renderCartLabel() {
-        // return this.renderView(VCartLabel);
-    }
-
-    // 查询所有库房列表
-    loadWarehouseList = async () => {
-
-        return await this.uqs.warehouse.Warehouse.all();
-    }
-
     // 查询库房列表数据源
     searchWarehouseList = async () => {
 
@@ -72,7 +58,7 @@ export class CSlectWarehouse extends CUqBase {
     // 查询所有库房列表
     loadWarehouseList = async () => {
 
-        return await this.uqs.warehouse.Warehouse.all();
+        return await this.uqs.warehouse.GetValidWarehouseList.table({ key: '' });
     }
 
     // 选中库房执行

@@ -98,6 +98,7 @@ export class VSetting extends VPage<CSetting> {
                 component: <IconText iconClass="text-info mr-2" icon="info-circle" text="关于" />,
                 onClick: null
             },
+            
         ]
 
         return <Page header="设置">

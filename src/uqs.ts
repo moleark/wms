@@ -8,6 +8,7 @@ export interface UqWarehouse {
     Shelf: Tuid;
     ShelfLayer: Tuid;
     ShelfBlock: Tuid;
+    GetValidWarehouseList: Query;
     SearchWarehouseByKey: Query;
     SearchWarehouseBuilding: Query;
     SearchWarehouseRoom: Query;

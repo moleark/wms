@@ -155,8 +155,8 @@ export class VOffShelfList extends VPage<COutBound> {
         printJS({
             printable: 'shelfListPage', // 要打印内容的id
             type: 'html',               // 可以打印html,img详细的可以在官方文档https://printjs.crabbly.com/中查询
-            scanStyles: false,          //不适用默认样式
-            style: style,             // 亦可使用引入的外部css;
+            scanStyles: false,          // 不适用默认样式
+            style: style,               // 亦可使用引入的外部css;
             // css: 'OffShelfList.css',
             documentTitle: "出库单号：" + this.outBoundOrderId,
             onPrintDialogClose: () => { clearInterval(focuser); this.backPage(); }  //取消打印回调
