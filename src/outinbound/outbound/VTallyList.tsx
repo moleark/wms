@@ -167,22 +167,22 @@ export class VTallyList extends VPage<COutBound> {
 
     private renderOutBoundOrderDetail = (outBoundOrderDetail: any) => {
 
-        let { $id, coaQuantity, consigneeAddress, consigneeMobile, consigneeName, consigneeTelphone, consigneeUnitName, consigneeZipcode, currency, expressLogistics,
-            isAppointLot, isNeedDelivery, msdsQuantity, needInsuredWhenDelivery, outBoundOrder, outBoundReason, pack, product, purchaseBillQuantity, quantity,
-            receiptQuantity, deliveryData, relationId, shelfBlock, showPriceWhenPrintReceipt, trayNumber, unitPrice, warehouse, deliveryNotes, lot } = outBoundOrderDetail;
+        let { consigneeName, consigneeUnitName, pack, product, quantity, trayNumber, appointLot } = outBoundOrderDetail;
 
         let unitName = (consigneeUnitName.length > 9) ? consigneeUnitName.substr(0, 9) : consigneeUnitName;
+        let { getProductExtention } = this.controller;
+        let storage = ''; // getProductExtention(product.id);
 
         return <div className="item">
             <div className="item-1">{tv(product, (values: any) => <>{values.origin}</>)}</div>
-            <div className="item-2">{lot}</div>
+            <div className="item-2">{appointLot}</div>
             <div className="item-3">{tv(pack, (values: any) => <>{tvPackx(values)}</>)}</div>
             <div className="item-4">{quantity}</div>
             <div className="item-5"><strong>{trayNumber}</strong></div>
-            <div className="item-6"></div>
+            <div className="item-6">{storage}</div>
             <div className="item-7">{unitName}</div>
             <div className="item-8">{consigneeName}</div>
-            <div className="item-9"></div>
+            <div className="item-9">{tv(product, (values: any) => <>{values.description.length > 27 ? String(values.description).substr(0, 27) : values.description}</>)}</div>
         </div>
     };
 

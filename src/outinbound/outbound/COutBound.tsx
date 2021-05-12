@@ -68,4 +68,10 @@ export class COutBound extends CUqBase {
         this.openVPage(VTallyList, outBoundOrderInfo)
     }
 
+    // 查询产品扩展信息
+    getProductExtention = (productId: number): Promise<any> => {
+        let result: any = this.uqs.product.ProductExtention.obj({ product: productId });
+        return result;
+    }
+
 }

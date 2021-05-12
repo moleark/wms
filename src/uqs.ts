@@ -1,7 +1,6 @@
 import { Tuid, Book, Map, Query, Action } from "tonva";
 
 export interface UqWarehouse {
-    $user: Tuid;
     Warehouse: Tuid;
     WarehouseBuilding: Tuid;
     WarehouseRoom: Tuid;
@@ -16,9 +15,9 @@ export interface UqWarehouse {
     SearchShelfLayer: Query;
     SearchShelfBlock: Query;
     SearchReadyOutBoundCutTastList: Query;  // 查询待出库截单任务列表
-    OutBoundCut: Action;                // 出库截单
-    SearchOutBoundOrderList: Query;     // 查询出库单号列表
-    SearchOutBoundOrderDetail: Query;   // 查询出库单详情
+    OutBoundCut: Action;                    // 出库截单
+    SearchOutBoundOrderList: Query;         // 查询出库单号列表
+    SearchOutBoundOrderDetail: Query;       // 查询出库单详情
 
     StorageCondition: Tuid;
     WarehouseStorageCondition: Tuid;
@@ -29,8 +28,14 @@ export interface UqWarehouse {
     Hazard: Tuid;
     WarehouseHazardClassMap: Map;
     WarehouseHazardMap: Map;
+    $user: Tuid;
+}
+
+export interface UqProduct {
+    ProductExtention: Map;
 }
 
 export interface UQs {
-    warehouse: UqWarehouse
+    warehouse: UqWarehouse;
+    product: UqProduct;
 }

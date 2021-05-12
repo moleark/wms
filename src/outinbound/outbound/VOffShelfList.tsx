@@ -165,7 +165,7 @@ export class VOffShelfList extends VPage<COutBound> {
 
     private renderOutBoundOrderDetail = (outBoundOrderDetail: any) => {
 
-        let { consigneeUnitName, outBoundOrder, outBoundReason, pack, product, quantity, shelfBlock, trayNumber, lot } = outBoundOrderDetail;
+        let { consigneeUnitName, outBoundOrder, outBoundReason, pack, product, quantity, shelfBlock, trayNumber, appointLot } = outBoundOrderDetail;
 
         let unitName = (consigneeUnitName.length > 7) ? consigneeUnitName.substr(0, 7) : consigneeUnitName;
 
@@ -173,7 +173,7 @@ export class VOffShelfList extends VPage<COutBound> {
             <div className="item-1"><strong>{trayNumber}</strong></div>
             <div className="item-2">{tv(shelfBlock, (values: any) => <>{values.no}</>)}</div>
             <div className="item-3">{tv(product, (values: any) => <>{values.origin}</>)}</div>
-            <div className="item-4">{lot}</div>
+            <div className="item-4">{appointLot}</div>
             <div className="item-5">{tv(pack, (values: any) => <>{tvPackx(values)}</>)}</div>
             <div className="item-6">{quantity}</div>
             <div className="item-7">{unitName}</div>
