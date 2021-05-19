@@ -33,7 +33,7 @@ export class VOffShelfList extends VPage<COutBound> {
 
         let height: number = 0;
         let tempHeight: number = this.firstTempheight;
-        let html: string = "<div id=\"itemListDiv\" class=\"itemList\"><ul class=\"va-list\">";
+        let html: string = "<div id=\"itemListDiv\" class=\"itemList_O\"><ul class=\"va-list\">";
 
         if (temptype == "last") {
             tempHeight = this.firstTempheight;
@@ -135,20 +135,21 @@ export class VOffShelfList extends VPage<COutBound> {
 
         // size: portrait || landscape; 设置横纵向打印
         let style = '@page {size:portrait}' + '@media print {'
-            + `main *{box-sizing:border-box}.printPage{width:100%;page-break-before:auto;page-break-after:always;background-color:white}
-            .header{width:100%;height:50px;padding:1px;background-color:white}.hLeft{width:18%;float:left;text-align:left;padding-left:1px}
-            .hLeft img{height:50px;width:50px}.hcenter{width:40%;float:left;text-align:right;font-weight:bold;font-size:28px;padding-top:5px}
-            .hright{width:30%;float:right}.hright ul{list-style-type:none;padding-top:2px}.hright ul li{height:30px;line-height:30px}
-            .title{width:100%;background-color:white;text-align:center;font-size:16px}.title table{width:100%}.title tbody{width:100%}
-            .th-1{width:15mm;padding:0;text-align:left}.th-2{width:35mm;text-align:left}.th-3{width:35mm;text-align:left}
-            .th-4{width:30mm;text-align:left}.th-5{width:30mm;text-align:left}.th-6{width:20mm;text-align:left}.th-7{width:35mm;text-align:center}
-            .itemList{width:100%;padding-top:1px;background-color:white}.itemList ul{display:block;list-style-type:disc;margin-block-start:.1em;margin-block-end:1em;margin-inline-start:0;margin-inline-end:0;padding-inline-start:40px;border-bottom:1px solid #000}
-            .itemList ul.va-list{list-style:none;padding:0;margin-bottom:15px}.itemList ul.va-list li{display:flex;flex-direction:row;flex-wrap:nowrap;height:26px;line-height:26px;border-bottom:1px solid #000}
-            .item{width:100%;height:auto;background-color:white;display:flex;padding:1px;font-family:Arial,Helvetica,sans-serif;font-size:15px}
-            .item-1{width:12mm;text-align:left}.item-2{width:50mm;text-align:left}.item-3{width:45mm;text-align:left}
-            .item-4{width:40mm;text-align:left}.item-5{width:40mm;text-align:left}.item-6{width:20mm;text-align:left}
-            .item-7{width:40mm;text-align:left}.footer{width:100%;height:30px;line-height:30px;text-align:left;background-color:white}
-            .footerDiv{float:right}.footerDiv ul{list-style-type:none;margin:1}.footerDiv ul li{float:left}.footerDiv span{width:100px;border-bottom:1px solid Black;padding:10px 110px 10px 10px}`
+            + `main *{box-sizing:border-box}.printPage_O{width:100%;page-break-before:auto;page-break-after:always;background-color:white}
+            .header_O{width:100%;height:50px;padding:1px;background-color:white}.hLeft_O{width:18%;float:left;text-align:left;padding-left:1px}
+            .hLeft_O img{height:50px;width:50px}.hcenter_O{width:40%;float:left;text-align:right;font-weight:bold;font-size:28px;padding-top:5px}
+            .hright_O{width:30%;float:right}.hright_O ul{list-style-type:none;padding-top:2px}.hright_O ul li{height:30px;line-height:30px}
+            .title_O{width:100%;background-color:white;text-align:center;font-size:16px}.title_O table{width:100%}
+            .title_O tbody{width:100%}.th-1{width:15mm;padding:0;text-align:left}.th-2{width:35mm;text-align:left}
+            .th-3{width:35mm;text-align:left}.th-4{width:30mm;text-align:left}.th-5{width:30mm;text-align:left}.th-6{width:20mm;text-align:left}
+            .th-7{width:35mm;text-align:center}.itemList_O{width:100%;padding-top:1px;background-color:white}.itemList_O ul{display:block;list-style-type:disc;margin-block-start:.1em;margin-block-end:1em;margin-inline-start:0;margin-inline-end:0;padding-inline-start:40px;border-bottom:1px solid #000}
+            .itemList_O ul.va-list{list-style:none;padding:0;margin-bottom:15px}.itemList_O ul.va-list li{display:flex;flex-direction:row;flex-wrap:nowrap;height:25px;line-height:25px;border-bottom:1px solid #000}
+            .item_O{width:100%;height:auto;background-color:white;display:flex;padding:1px;font-family:Arial,Helvetica,sans-serif;font-size:15px}
+            .item_O-1{width:12mm;text-align:left}.item_O-2{width:50mm;text-align:left}.item_O-3{width:45mm;text-align:left}
+            .item_O-4{width:40mm;text-align:left}.item_O-5{width:40mm;text-align:left}.item_O-6{width:20mm;text-align:left}
+            .item_O-7{width:40mm;text-align:left}.footer_O{width:100%;height:30px;line-height:30px;text-align:left;background-color:white}
+            .footerDiv_O{float:right}.footerDiv_O ul{list-style-type:none;margin:1}.footerDiv_O ul li{float:left}
+            .footerDiv_O span{width:100px;border-bottom:1px solid Black;padding:10px 110px 10px 10px}`
             + '}';
         let focuser = setInterval(() => window.dispatchEvent(new Event('focus')), 500);
 
@@ -169,34 +170,34 @@ export class VOffShelfList extends VPage<COutBound> {
 
         let unitName = (consigneeUnitName.length > 7) ? consigneeUnitName.substr(0, 7) : consigneeUnitName;
 
-        return <div className="item">
-            <div className="item-1"><strong>{trayNumber}</strong></div>
-            <div className="item-2">{tv(shelfBlock, (values: any) => <>{values.no}</>)}</div>
-            <div className="item-3">{tv(product, (values: any) => <>{values.origin}</>)}</div>
-            <div className="item-4">{appointLot}</div>
-            <div className="item-5">{tv(pack, (values: any) => <>{tvPackx(values)}</>)}</div>
-            <div className="item-6">{quantity}</div>
-            <div className="item-7">{unitName}</div>
+        return <div className="item_O">
+            <div className="item_O-1"><strong>{trayNumber}</strong></div>
+            <div className="item_O-2">{tv(shelfBlock, (values: any) => <>{values.name}</>)}</div>
+            <div className="item_O-3">{tv(product, (values: any) => <>{values.origin}</>)}</div>
+            <div className="item_O-4">{appointLot}</div>
+            <div className="item_O-5">{tv(pack, (values: any) => <>{tvPackx(values)}</>)}</div>
+            <div className="item_O-6">{quantity}</div>
+            <div className="item_O-7">{unitName}</div>
         </div>
     };
 
     private page = observer(() => {
 
-        let topDiv = <div id="topDiv" className="header">
-            <div className="hLeft">
+        let topDiv = <div id="topDiv" className="header_O">
+            <div className="hLeft_O">
                 <img src={logo} alt="Logo" />
             </div>
-            <div className="hcenter">
+            <div className="hcenter_O">
                 <span>百灵威出库单</span>
             </div>
-            <div className="hright">
+            <div className="hright_O">
                 <ul>
                     <li><span> {this.controller.warehouse.name} </span></li>
                 </ul>
             </div>
         </div >
 
-        let titleDiv = <div id="titleDiv" className="title">
+        let titleDiv = <div id="titleDiv" className="title_O">
             <table>
                 <tbody>
                     <tr>
@@ -212,12 +213,12 @@ export class VOffShelfList extends VPage<COutBound> {
             </table>
         </div>
 
-        let itemList = <div id="itemListDiv" className="itemList">
+        let itemList = <div id="itemListDiv" className="itemList_O">
             <List items={this.outBoundOrderInfo} item={{ render: this.renderOutBoundOrderDetail }} none="无出库单数据" />
         </div>
 
-        let footerDiv = <div id="footerDiv" className="footer">
-            <div className="footerDiv">
+        let footerDiv = <div id="footerDiv" className="footer_O">
+            <div className="footerDiv_O">
                 <ul>
                     <li>制单人：<span></span></li>
                     <li>出库人：<span></span></li>
@@ -232,7 +233,7 @@ export class VOffShelfList extends VPage<COutBound> {
 
         return <Page header="出库单打印" right={right}>
 
-            <div id="shelfListPage" className="printPage">
+            <div id="shelfListPage" className="printPage_O">
                 {topDiv}
                 {titleDiv}
                 {itemList}
@@ -241,7 +242,6 @@ export class VOffShelfList extends VPage<COutBound> {
         </Page>
     });
 }
-
 
 const tvPackx = (values: any) => {
     let { radiox, radioy, unit } = values;

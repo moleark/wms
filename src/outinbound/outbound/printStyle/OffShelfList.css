@@ -3,7 +3,7 @@ main *{
     box-sizing: border-box;
 }
 
-.printPage {
+.printPage_O {
     width: 100%;
     page-break-before: auto;
     page-break-after: always;
@@ -11,25 +11,25 @@ main *{
 }
 
 /* 页面头部信息 */
-.header{
+.header_O{
     width: 100%;
     height: 50px;
     padding: 1px;
     background-color: white;
 }
 
-.hLeft {
+.hLeft_O {
     width: 18%;
     float: left;
     text-align: left;
     padding-left: 1px;
 }
-    .hLeft img{
+    .hLeft_O img{
         height: 50px;
         width: 50px;
     }
 
-.hcenter {
+.hcenter_O {
     width: 40%;
     float: left;
     text-align: right;
@@ -38,30 +38,30 @@ main *{
     padding-top: 5px;
 }
 
-.hright{
+.hright_O{
     width: 30%;
     float: right;
 }
-    .hright ul {
+    .hright_O ul {
         list-style-type: none;
         padding-top: 2px;
     }    
-        .hright ul li {
+        .hright_O ul li {
                 height: 30px;
                 line-height: 30px;
             }
 
 /* 标题 */
-.title{
+.title_O{
     width: 100%;
     background-color: white;
     text-align: center;
     font-size:16px;
 }
-    .title table{
+    .title_O table{
         width: 100%;
     }
-    .title tbody{
+    .title_O tbody{
         width: 100%;
     }
     .th-1{
@@ -96,13 +96,13 @@ main *{
 
 
 /* 明细信息 */
-.itemList{
+.itemList_O{
     width: 100%;
     padding-top: 1px;
     background-color: white;
 }
 
-.itemList ul {
+.itemList_O ul {
     display: block;
     list-style-type: disc;
     margin-block-start: 0.1em;
@@ -112,12 +112,12 @@ main *{
     padding-inline-start: 40px;
     border-bottom: 1px solid #000;
 }
-.itemList ul.va-list {
+.itemList_O ul.va-list {
     list-style: none;
     padding: 0px;
     margin-bottom: 15px;
 }
-.itemList ul.va-list li {
+.itemList_O ul.va-list li {
     display: flex;
     flex-direction: row;
     flex-wrap:nowrap;
@@ -126,7 +126,7 @@ main *{
     border-bottom: 1px solid #000;
 }
 
-.item {
+.item_O {
     width: 100%;
     height: auto;
     background-color: white;
@@ -136,37 +136,37 @@ main *{
     font-size:15px;
 }
 
-.item-1{
+.item_O-1{
     width:12mm;
     text-align: left;
 }
-.item-2{
+.item_O-2{
     width:50mm;
     text-align: left;
 }
-.item-3{
+.item_O-3{
     width:45mm;
     text-align: left;
 }
-.item-4{
+.item_O-4{
     width:40mm;
     text-align: left;
 }
-.item-5{
+.item_O-5{
     width:40mm;
     text-align: left;
 }
-.item-6{
+.item_O-6{
     width:20mm;
     text-align: left;
 }
-.item-7{
+.item_O-7{
     width:40mm;
     text-align: left;
 }
 
 /*尾部信息*/
-.footer{
+.footer_O{
     width: 100%;
     height: 30px;
     line-height: 30px;
@@ -174,18 +174,18 @@ main *{
     background-color: white;
 }
 
-.footerDiv{
+.footerDiv_O{
     float: right;
 }
-    .footerDiv ul {
+    .footerDiv_O ul {
         list-style-type: none;
         margin: 1;
     }
-        .footerDiv ul li {
+        .footerDiv_O ul li {
             float: left;
         }
 
-    .footerDiv span {
+    .footerDiv_O span {
         width: 100px;
         border-bottom: 1px solid Black;
         padding: 10px 110px 10px 10px;

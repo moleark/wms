@@ -28,7 +28,7 @@ export class VOutInBound extends View<COutInBound> {
             </div> :
             <div className="d-flex justify-content-between mr-1 my-2" onClick={() => searchWarehouseList()}>
                 <span className="cursor-pointer text-info"><FA className="mr-1" name="search" />请选择库房</span>
-            </div>;
+            </div>
 
         let rows: Prop[];
         rows = [

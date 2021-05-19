@@ -6,6 +6,9 @@ import { VOutBoundOrderHistory } from './VOutBoundOrderHistory';
 import { VOutBoundOrderDetail } from './VOutBoundOrderDetail';
 import { VOffShelfList } from './VOffShelfList';
 import { VTallyList } from './VTallyList';
+import { VDeliveryList } from './VDeliveryList';
+import { VAccompanyingGoodsInfo } from './VAccompanyingGoodsInfo';
+import { isUndefined } from 'lodash';
 
 export class COutBound extends CUqBase {
 
@@ -66,6 +69,36 @@ export class COutBound extends CUqBase {
     openTallyListPage = async (outBoundOrderInfo: any) => {
 
         this.openVPage(VTallyList, outBoundOrderInfo)
+    }
+
+    // 打开打印发货单界面
+    openDeliveryListPage = async (outBoundOrderInfo: any) => {
+
+        let deliveryListInfo: any[] = [];
+        let arrId: any[] = [];
+        let outBoundOrderDetail = outBoundOrderInfo.outBoundOrderDetailInfo;
+
+        // 把数据源根据临时理货号（托盘号）去重复，因为发货单是
+        for (let index = 0; index < outBoundOrderDetail.length; index++) {
+            if (arrId.indexOf(outBoundOrderDetail[index]['trayNumber']) == -1) {
+                arrId.push(outBoundOrderDetail[index]['trayNumber']);
+                deliveryListInfo.push(outBoundOrderDetail[index]);
+            }
+        }
+        this.openVPage(VDeliveryList, { outBoundOrderId: outBoundOrderInfo.outBoundOrderId, deliveryListInfo: deliveryListInfo });
+    }
+
+    // 打开随货资料打印界面
+    openAccompanyingGoodsInfo = async (outBoundOrderInfo: any) => {
+
+        let accompanyingGoodsInfo: any[] = [];
+        for (let index = 0; index < outBoundOrderInfo.outBoundOrderDetailInfo.length; index++) {
+            if (!isUndefined(outBoundOrderInfo.outBoundOrderDetailInfo[index]['deliveryData'])) {
+                accompanyingGoodsInfo.push(outBoundOrderInfo.outBoundOrderDetailInfo[index]);
+            }
+        }
+
+        this.openVPage(VAccompanyingGoodsInfo, { outBoundOrderId: outBoundOrderInfo.outBoundOrderId, accompanyingGoodsInfo: accompanyingGoodsInfo });
     }
 
     // 查询产品扩展信息

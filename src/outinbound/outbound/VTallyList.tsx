@@ -12,13 +12,13 @@ export class VTallyList extends VPage<COutBound> {
     tempCount: number = 0;            // 循环控制数据明细列表，默认为0
     firstTempheight: number = 0;      // 首页动态数据要显示的高度
     nextTempheight: number = 0;       // 下一页动态数据要显示的高度
-    pageHeight: number = 620;           // 当前页面显示高度
+    pageHeight: number = 630;           // 当前页面显示高度
 
     async open(outBoundOrderInfo?: any) {
 
         this.outBoundOrderInfo = outBoundOrderInfo.outBoundOrderDetailInfo;
         this.outBoundOrderId = outBoundOrderInfo.outBoundOrderId;
-        document.title = "出库单号：" + this.outBoundOrderId;
+        // document.title = "出库单号：" + this.outBoundOrderId;
         this.openPage(this.page);
 
         setTimeout(() => {
@@ -32,7 +32,7 @@ export class VTallyList extends VPage<COutBound> {
 
         let height: number = 0;
         let tempHeight: number = this.firstTempheight;
-        let html: string = "<div id=\"dataListDiv\" class=\"dataList\"><ul class=\"va-list\">";
+        let html: string = "<div id=\"dataListDiv\" class=\"dataList_T\"><ul class=\"va-list\">";
 
         if (temptype == "last") {
             tempHeight = this.firstTempheight;
@@ -134,20 +134,20 @@ export class VTallyList extends VPage<COutBound> {
 
         // size: portrait || landscape; 设置横纵向打印
         let style = '@page {size:landscape}' + '@media print {'
-            + `main *{box-sizing:border-box}.printPage{width:100%;page-break-before:auto;page-break-after:always;background-color:white}
-            .top{width:100%;height:40px;border-bottom:3px solid black;background-color:white}.hLeft{width:40%;float:left;text-align:left;padding:5px;font-size:18px;font-weight:600}
-            .hcenter{width:40%;float:left;text-align:left;font-weight:bold;font-size:24px;padding-left:1%}.hright{width:12%;float:left;text-align:left;padding:5px;font-size:15px}
-            .title{width:100%;background-color:white;text-align:center;padding:0;font-size:15px}.title table{width:100%;padding:0}
+            + `main *{box-sizing:border-box}.printPage_T{width:100%;page-break-before:auto;page-break-after:always;background-color:white}
+            .top_T{width:100%;height:40px;border-bottom:3px solid black;background-color:white}.hLeft_T{width:40%;float:left;text-align:left;padding:5px;font-size:18px;font-weight:600}
+            .hcenter_T{width:40%;float:left;text-align:left;font-weight:bold;font-size:24px;padding-left:1%}.hright_T{width:12%;float:left;text-align:left;padding:5px;font-size:15px}
+            .title_T{width:100%;background-color:white;text-align:center;padding:0;font-size:15px}.title_T table{width:100%;padding:0}
             .th-1{width:35mm;text-align:left}.th-2{width:30mm;text-align:left}.th-3{width:30mm;text-align:left}.th-4{width:11mm;text-align:left}
             .th-5{width:13mm;text-align:left}.th-6{width:30mm;text-align:left}.th-7{width:40mm;text-align:left}.th-8{width:25mm;text-align:left}
-            .th-9{width:45mm;text-align:left}.dataList{width:100%;padding-top:1px;background-color:white}.dataList ul{display:block;list-style-type:disc;margin-block-start:.1em;margin-block-end:.4em;margin-inline-start:0;margin-inline-end:0;padding-inline-start:40px;border-bottom:1px solid #000}
-            .dataList ul.va-list{list-style:none;padding:0}.dataList ul.va-list li{display:flex;flex-direction:row;flex-wrap:nowrap;height:25px;line-height:25px;border-bottom:1px solid #000}
-            .item{width:100%;height:auto;background-color:white;display:flex;padding:0;font-family:Arial,Helvetica,sans-serif;font-size:14px}
-            .item-1{width:35mm;text-align:left}.item-2{width:35mm;text-align:left}.item-3{width:31mm;text-align:left}
-            .item-4{width:12mm;text-align:left}.item-5{width:13mm;text-align:left}.item-6{width:30mm;text-align:left}
-            .item-7{width:42mm;text-align:left}.item-8{width:25mm;text-align:left}.item-9{width:46mm;text-align:left}
-            .footer{width:99%;height:25px;padding:1px;background-color:white}.footer Div{text-align:center;margin:1px auto;margin-top:1px}
-            .footer span{width:100%;font-size:13px;font-weight:500;text-align:center}.operation{width:100%;background-color:white}
+            .th-9{width:45mm;text-align:left}.dataList_T{width:100%;padding-top:1px;background-color:white}.dataList_T ul{display:block;list-style-type:disc;margin-block-start:.1em;margin-block-end:.4em;margin-inline-start:0;margin-inline-end:0;padding-inline-start:40px;border-bottom:1px solid #000}
+            .dataList_T ul.va-list{list-style:none;padding:0}.dataList_T ul.va-list li{display:flex;flex-direction:row;flex-wrap:nowrap;height:25px;line-height:25px;border-bottom:1px solid #000}
+            .item_T{width:100%;height:auto;background-color:white;display:flex;padding:0;font-family:Arial,Helvetica,sans-serif;font-size:14px}
+            .item_T-1{width:35mm;text-align:left}.item_T-2{width:35mm;text-align:left}.item_T-3{width:31mm;text-align:left}
+            .item_T-4{width:12mm;text-align:left}.item_T-5{width:13mm;text-align:left}.item_T-6{width:30mm;text-align:left}
+            .item_T-7{width:42mm;text-align:left}.item_T-8{width:25mm;text-align:left}.item_T-9{width:46mm;text-align:left}
+            .footer_T{width:99%;height:25px;padding:1px;background-color:white}.footer_T Div{text-align:center;margin:1px auto;margin-top:1px}
+            .footer_T span{width:100%;font-size:13px;font-weight:500;text-align:center}.operation_T{width:100%;background-color:white;font-size:14px}
             .operationReport{padding-top:15px;margin-top:15px;background-color:white}.operationReport1{font-size:22px;font-weight:600;border-bottom:5px solid black;width:100%;text-align:left}
             .operationReport2{width:68%;float:left;text-align:left;padding-top:10px;padding-right:5px;height:320px}
             .operationReport2 div{border:1px solid black;height:300px}.operationReport3{width:31%;float:right;text-align:left;padding-top:10px;padding-left:5px;height:320px}
@@ -173,28 +173,28 @@ export class VTallyList extends VPage<COutBound> {
         let { getProductExtention } = this.controller;
         let storage = ''; // getProductExtention(product.id);
 
-        return <div className="item">
-            <div className="item-1">{tv(product, (values: any) => <>{values.origin}</>)}</div>
-            <div className="item-2">{appointLot}</div>
-            <div className="item-3">{tv(pack, (values: any) => <>{tvPackx(values)}</>)}</div>
-            <div className="item-4">{quantity}</div>
-            <div className="item-5"><strong>{trayNumber}</strong></div>
-            <div className="item-6">{storage}</div>
-            <div className="item-7">{unitName}</div>
-            <div className="item-8">{consigneeName}</div>
-            <div className="item-9">{tv(product, (values: any) => <>{values.description.length > 27 ? String(values.description).substr(0, 27) : values.description}</>)}</div>
+        return <div className="item_T">
+            <div className="item_T-1">{tv(product, (values: any) => <>{values.origin}</>)}</div>
+            <div className="item_T-2">{appointLot}</div>
+            <div className="item_T-3">{tv(pack, (values: any) => <>{tvPackx(values)}</>)}</div>
+            <div className="item_T-4">{quantity}</div>
+            <div className="item_T-5"><strong>{trayNumber}</strong></div>
+            <div className="item_T-6">{storage}</div>
+            <div className="item_T-7">{unitName}</div>
+            <div className="item_T-8">{consigneeName}</div>
+            <div className="item_T-9">{tv(product, (values: any) => <>{values.description.length > 27 ? String(values.description).substr(0, 27) : values.description}</>)}</div>
         </div>
     };
 
     private page = observer(() => {
 
-        let topDiv = <div id="topDiv" className="top">
-            <div className="hLeft"><span>{this.outBoundOrderId}</span></div>
-            <div className="hcenter"><span>现货理货单</span></div>
-            <div className="hright"><span>经手人：</span></div>
+        let topDiv = <div id="topDiv" className="top_T">
+            <div className="hLeft_T"><span>{this.outBoundOrderId}</span></div>
+            <div className="hcenter_T"><span>现货理货单</span></div>
+            <div className="hright_T"><span>经手人：</span></div>
         </div>
 
-        let titleDiv = <div id="titleDiv" className="title">
+        let titleDiv = <div id="titleDiv" className="title_T">
             <table>
                 <tbody>
                     <tr>
@@ -212,13 +212,13 @@ export class VTallyList extends VPage<COutBound> {
             </table>
         </div>
 
-        let dataListDiv = <div id="dataListDiv" className="dataList">
+        let dataListDiv = <div id="dataListDiv" className="dataList_T">
             <List items={this.outBoundOrderInfo} item={{ render: this.renderOutBoundOrderDetail }} none="无出库单数据" />
         </div>
 
-        let operationReportDiv = <div id="operationDiv" className="operation">
+        let operationReportDiv = <div id="operationDiv" className="operation_T">
 
-            <div id="operationTitle" className="top">
+            <div id="operationTitle" className="top_T">
                 <div className="hLeft"><span>{this.outBoundOrderId}</span></div>
                 <div className="hcenter"><span>理货单（以箱号排序）</span></div>
                 <div className="hright"><span>经手人：</span></div>
@@ -246,7 +246,7 @@ export class VTallyList extends VPage<COutBound> {
             </div>
         </div>
 
-        let footerDiv = <div id="footerDiv" className="footer">
+        let footerDiv = <div id="footerDiv" className="footer_T">
             <div><span>精准 + 严谨是百灵威人的行为准则</span></div>
         </div>
 
@@ -255,7 +255,7 @@ export class VTallyList extends VPage<COutBound> {
         </div>;
 
         return <Page header="理货单打印" right={right}>
-            <div id="tallyListPage" className="printPage">
+            <div id="tallyListPage" className="printPage_T">
                 {topDiv}
                 {titleDiv}
                 {dataListDiv}
