@@ -181,6 +181,11 @@ export class VOffShelfList extends VPage<COutBound> {
         </div>
     };
 
+    private sortHjh = (a: any, b: any) => {
+
+        return a.shelfBlock - b.shelfBlock;
+    }
+
     private page = observer(() => {
 
         let topDiv = <div id="topDiv" className="header_O">
@@ -214,7 +219,7 @@ export class VOffShelfList extends VPage<COutBound> {
         </div>
 
         let itemList = <div id="itemListDiv" className="itemList_O">
-            <List items={this.outBoundOrderInfo} item={{ render: this.renderOutBoundOrderDetail }} none="无出库单数据" />
+            <List items={this.outBoundOrderInfo.sort(this.sortHjh)} item={{ render: this.renderOutBoundOrderDetail }} none="无出库单数据" />
         </div>
 
         let footerDiv = <div id="footerDiv" className="footer_O">

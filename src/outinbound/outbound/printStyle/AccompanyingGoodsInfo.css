@@ -1,6 +1,6 @@
 /* 页面设置 */
 
-.printPage_D {
+.printPage_A {
     width: 100%;
     page-break-before: auto;
     page-break-after: always;
@@ -8,14 +8,14 @@
 }
 
 /* 页面头部信息 */
-.top_D{
+.top_A{
     width: 100%;
     height: 35px;
     border-bottom: 3px solid black;
     background-color: white;
 }
 
-.hLeft_D {
+.hLeft_A {
     width: 32%;
     float: left;
     text-align: left;
@@ -24,7 +24,7 @@
     font-weight: 600;
 }
 
-.hcenter_D {
+.hcenter_A {
     width: 20%;
     float: left;
     text-align: left;
@@ -33,30 +33,81 @@
     padding-left: 1%;
 }
 
-.hright_D{
+.hright_A{
     width: 45%;
     float: left;
 }
-    .hright_D div {
+    .hright_A div {
         width: 100%;
     }
-    .hright_D ul {
+    .hright_A ul {
         list-style-type: none;
     }
-    .hright_D ul li {
+    .hright_A ul li {
             display: inline;
             width:45%;
             float:left
         }
 
+/* 标题 */
+.title_A{
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    padding: 0px;
+    font-size:15px;
+}
+    .title_A table{
+        width: 100%;
+        padding: 0;
+    }
+    .th-1{
+        width:1%;
+        text-align: left;
+        font-size:15px;
+    }
+    .th-2{
+        width:6%;
+        text-align: left;
+        font-size:16px;
+    }
+    .th-3{
+        width:0.1%;
+        text-align: left;
+    }
+    .th-4{
+        width:5%;
+        text-align: left;
+    }
+    .th-5{
+        width:6%;
+        text-align: left;
+    }
+    .th-6{
+        width:8%;
+        text-align: left;
+    }
+    .th-7{
+        width:30%;
+        text-align: left;
+    }
+    .th-8{
+        width:25mm;
+        text-align: left;
+    }
+    .th-9{
+        width:45mm;
+        text-align: left;
+    }
+
 /* 明细信息 */
-.dataList_D{
+.dataList_A{
     width: 100%;
     padding-top: 0px;
     background-color: white;
 }
 
-.dataList_D ul {
+.dataList_A ul {
     display: block;
     list-style-type: disc;
     margin-block-start: 0.1em;
@@ -66,23 +117,18 @@
     padding-inline-start: 40px;
     border-bottom: 1px solid #000;
 }
-.dataList_D ul.va-list {
+.dataList_A ul.va-list {
     list-style: none;
     padding: 0px;
 }
-.dataList_D ul.va-list li {
+.dataList_A ul.va-list li {
     display: flex;
     flex-direction: row;
     flex-wrap:nowrap;
     border-bottom: 1px solid #000;
 }
 
-.itemTable_D{
-    border: 0px;
-    width: 100%;
-}
-
-.item_D {
+.item_A {
     width: 100%;
     height: 30px;
     background-color: white;
@@ -90,57 +136,65 @@
     font-size:15px;
 }
 
-.item_D tr{
+.item_A tr{
     width: 100%;
     padding: 0;
 }
 
-.item_D-1{
+.item_A-1{
     width:1%;
     text-align: left;
     font-size:15px;
 }
 
-.item_D-2{
+.item_A-2{
     width:6%;
     text-align: left;
     font-size:16px;
 }
-.item_D-3{
+.item_A-3{
     width:0.1%;
     text-align: left;
 }
-.item_D-4{
+.item_A-4{
     width:5%;
     text-align: left;
 }
-.item_D-5{
+.item_A-5{
     width:6%;
     text-align: left;
 }
-.item_D-6{
+.item_A-6{
     width:8%;
     text-align: left;
 }
-.item_D-7{
+.item_A-7{
     width:30%;
+    text-align: left;
+}
+.item_A-8{
+    width:10%;
+    text-align: left;
+}
+.item_A-9{
+    width:10%;
     text-align: left;
 }
 
 /*尾部信息*/
-.footer_D{
+.footer_A{
     width: 99%;
     height: 10px;
     padding:0px;
     background-color: white;
 }
 
-.footer_D Div{
+.footer_A Div{
     text-align: center;
     margin: 1px auto; 
     margin-top: 1px;
 }
-.footer_D span {
+.footer_A span {
     width: 100%;
     font-size: 13px;
     font-weight: 500;

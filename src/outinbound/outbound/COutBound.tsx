@@ -8,6 +8,7 @@ import { VOffShelfList } from './VOffShelfList';
 import { VTallyList } from './VTallyList';
 import { VDeliveryList } from './VDeliveryList';
 import { VAccompanyingGoodsInfo } from './VAccompanyingGoodsInfo';
+import { VDeliveryReceiptList } from './VDeliveryReceiptList';
 import { isUndefined } from 'lodash';
 
 export class COutBound extends CUqBase {
@@ -92,13 +93,27 @@ export class COutBound extends CUqBase {
     openAccompanyingGoodsInfo = async (outBoundOrderInfo: any) => {
 
         let accompanyingGoodsInfo: any[] = [];
-        for (let index = 0; index < outBoundOrderInfo.outBoundOrderDetailInfo.length; index++) {
-            if (!isUndefined(outBoundOrderInfo.outBoundOrderDetailInfo[index]['deliveryData'])) {
-                accompanyingGoodsInfo.push(outBoundOrderInfo.outBoundOrderDetailInfo[index]);
+        let arrId: any[] = [];
+        let outBoundOrderDetail = outBoundOrderInfo.outBoundOrderDetailInfo;
+
+        for (let index = 0; index < outBoundOrderDetail.length; index++) {
+            if (arrId.indexOf(outBoundOrderDetail[index]['trayNumber']) == -1 && !isUndefined(outBoundOrderDetail[index]['deliveryData'])) {
+                arrId.push(outBoundOrderDetail[index]['trayNumber']);
+                accompanyingGoodsInfo.push(outBoundOrderDetail[index]);
             }
         }
-
         this.openVPage(VAccompanyingGoodsInfo, { outBoundOrderId: outBoundOrderInfo.outBoundOrderId, accompanyingGoodsInfo: accompanyingGoodsInfo });
+    }
+
+    // 打开送货服务回执打印界面
+    openDeliveryReceiptList = async (outBoundOrderInfo: any) => {
+
+        this.openVPage(VDeliveryReceiptList);
+    }
+
+    // 打开非送货服务回执打印界面
+    openNonDeliveryReceiptList = async (outBoundOrderInfo: any) => {
+
     }
 
     // 查询产品扩展信息

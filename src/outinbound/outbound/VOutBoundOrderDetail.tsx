@@ -71,7 +71,7 @@ export class VOutBoundOrderDetail extends VPage<COutBound> {
 
         let outBoundOrderDetail = <List items={this.outBoundOrderDetail} item={{ render: this.renderOutBoundOrderDetail }} none="无出库单明细" />
         let outBoundOrderInfo: any = { outBoundOrderId: this.outBoundOrderId, outBoundOrderDetailInfo: this.outBoundOrderDetail }
-        let { openOffShelfListPage, openTallyListPage, openDeliveryListPage, openAccompanyingGoodsInfo } = this.controller;
+        let { openOffShelfListPage, openTallyListPage, openDeliveryListPage, openAccompanyingGoodsInfo, openDeliveryReceiptList, openNonDeliveryReceiptList } = this.controller;
 
         let footer = <div className="row d-block px-1">
             <div className="row col-12" >
@@ -90,10 +90,10 @@ export class VOutBoundOrderDetail extends VPage<COutBound> {
             </div>
             <div className="row col-12" >
                 <div className="col-6 px-1">
-                    <button type="button" className="w-100 btn btn-primary align-self-center px-1" onClick={undefined}>送货服务回执</button>
+                    <button type="button" className="w-100 btn btn-primary align-self-center px-1" onClick={() => openDeliveryReceiptList(outBoundOrderInfo)}>送货服务回执</button>
                 </div>
                 <div className="col-6 px-1">
-                    <button type="button" className="w-100 btn btn-primary align-self-center px-1" onClick={undefined}>非送货服务回执</button>
+                    <button type="button" className="w-100 btn btn-primary align-self-center px-1" onClick={() => openNonDeliveryReceiptList(outBoundOrderInfo)}>非送货服务回执</button>
                 </div>
             </div>
         </div >

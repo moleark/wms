@@ -4,7 +4,6 @@ import { List, Page, VPage, tv, FA } from 'tonva';
 import { COutBound } from './COutBound';
 import './printStyle/AccompanyingGoodsInfo.css';
 import printJS from 'print-js';
-import { isUndefined } from 'lodash';
 
 export class VAccompanyingGoodsInfo extends VPage<COutBound> {
 
@@ -18,7 +17,6 @@ export class VAccompanyingGoodsInfo extends VPage<COutBound> {
     async open(outBoundOrderInfo?: any) {
 
         this.outBoundOrderInfo = outBoundOrderInfo.accompanyingGoodsInfo;
-
         this.outBoundOrderId = outBoundOrderInfo.outBoundOrderId;
         this.openPage(this.page);
 
@@ -33,7 +31,7 @@ export class VAccompanyingGoodsInfo extends VPage<COutBound> {
 
         let height: number = 0;
         let tempHeight: number = this.firstTempheight;
-        let html: string = "<div id=\"dataListDiv\" class=\"dataList_D\"><ul class=\"va-list\">";
+        let html: string = "<div id=\"dataListDiv\" class=\"dataList_A\"><ul class=\"va-list\">";
 
         if (temptype == "last") {
             tempHeight = this.firstTempheight;
@@ -124,7 +122,7 @@ export class VAccompanyingGoodsInfo extends VPage<COutBound> {
                     }
                 }
             }
-            document.getElementById("deliveryListPage").innerHTML = pageHtml;
+            document.getElementById("accompanyingGoodsInfoPage").innerHTML = pageHtml;
         }
     }
 
@@ -133,21 +131,26 @@ export class VAccompanyingGoodsInfo extends VPage<COutBound> {
 
         // size: portrait || landscape; 设置横(landscape)\纵向(portrait)打印
         let style = '@page {size:landscape}' + '@media print {'
-            + `.printPage_D{width:100%;page-break-before:auto;page-break-after:always;background-color:white}.top_D{width:100%;height:35px;border-bottom:3px solid black;background-color:white}
-            .hLeft_D{width:32%;float:left;text-align:left;padding:1px;font-size:18px;font-weight:600}.hcenter_D{width:20%;float:left;text-align:left;font-weight:bold;font-size:24px;padding-left:1%}
-            .hright_D{width:45%;float:left}.hright_D div{width:100%}.hright_D ul{list-style-type:none}.hright_D ul li{display:inline;width:45%;float:left}
-            .dataList_D{width:100%;padding-top:0;background-color:white}.dataList_D ul{display:block;list-style-type:disc;margin-block-start:.1em;margin-block-end:.4em;margin-inline-start:0;margin-inline-end:0;padding-inline-start:40px;border-bottom:1px solid #000}
-            .dataList_D ul.va-list{list-style:none;padding:0}.dataList_D ul.va-list li{display:flex;flex-direction:row;flex-wrap:nowrap;border-bottom:1px solid #000}
-            .itemTable_D{border:0;width:100%}.item_D{width:100%;height:30px;background-color:white;font-family:Arial,Helvetica,sans-serif;font-size:15px}
-            .item_D tr{width:100%;padding:0}.item_D-1{width:1%;text-align:left;font-size:15px}.item_D-2{width:6%;text-align:left;font-size:16px}
-            .item_D-3{width:.1%;text-align:left}.item_D-4{width:5%;text-align:left}.item_D-5{width:6%;text-align:left}
-            .item_D-6{width:8%;text-align:left}.item_D-7{width:30%;text-align:left}.footer_D{width:99%;height:10px;padding:0;background-color:white}
-            .footer_D Div{text-align:center;margin:1px auto;margin-top:1px}.footer_D span{width:100%;font-size:13px;font-weight:500;text-align:center}`
+            + `.printPage_A{width:100%;page-break-before:auto;page-break-after:always;background-color:white}.top_A{width:100%;height:35px;border-bottom:3px solid black;background-color:white}
+            .hLeft_A{width:32%;float:left;text-align:left;padding:1px;font-size:18px;font-weight:600}.hcenter_A{width:20%;float:left;text-align:left;font-weight:bold;font-size:24px;padding-left:1%}
+            .hright_A{width:45%;float:left}.hright_A div{width:100%}.hright_A ul{list-style-type:none}.hright_A ul li{display:inline;width:45%;float:left}
+            .title_A{width:100%;background-color:white;text-align:center;padding:0;font-size:15px}.title_A table{width:100%;padding:0}
+            .th-1{width:1%;text-align:left;font-size:15px}.th-2{width:6%;text-align:left;font-size:16px}.th-3{width:.1%;text-align:left}
+            .th-4{width:5%;text-align:left}.th-5{width:6%;text-align:left}.th-6{width:8%;text-align:left}.th-7{width:30%;text-align:left}
+            .th-8{width:25mm;text-align:left}.th-9{width:45mm;text-align:left}.dataList_A{width:100%;padding-top:0;background-color:white}
+            .dataList_A ul{display:block;list-style-type:disc;margin-block-start:.1em;margin-block-end:.4em;margin-inline-start:0;margin-inline-end:0;padding-inline-start:40px;border-bottom:1px solid #000}
+            .dataList_A ul.va-list{list-style:none;padding:0}.dataList_A ul.va-list li{display:flex;flex-direction:row;flex-wrap:nowrap;border-bottom:1px solid #000}
+            .item_A{width:100%;height:30px;background-color:white;font-family:Arial,Helvetica,sans-serif;font-size:15px}
+            .item_A tr{width:100%;padding:0}.item_A-1{width:1%;text-align:left;font-size:15px}.item_A-2{width:6%;text-align:left;font-size:16px}
+            .item_A-3{width:.1%;text-align:left}.item_A-4{width:5%;text-align:left}.item_A-5{width:6%;text-align:left}
+            .item_A-6{width:8%;text-align:left}.item_A-7{width:30%;text-align:left}.item_A-8{width:10%;text-align:left}
+            .item_A-9{width:10%;text-align:left}.footer_A{width:99%;height:10px;padding:0;background-color:white}
+            .footer_A Div{text-align:center;margin:1px auto;margin-top:1px}.footer_A span{width:100%;font-size:13px;font-weight:500;text-align:center}`
             + '}';
         let focuser = setInterval(() => window.dispatchEvent(new Event('focus')), 500);
 
         printJS({
-            printable: 'deliveryListPage', // 要打印内容的id
+            printable: 'accompanyingGoodsInfoPage', // 要打印内容的id
             type: 'html',               // 可以打印html,img详细的可以在官方文档https://printjs.crabbly.com/中查询
             scanStyles: false,          // 不适用默认样式
             style: style,               // 亦可使用引入的外部css;
@@ -158,60 +161,65 @@ export class VAccompanyingGoodsInfo extends VPage<COutBound> {
 
     private renderOutBoundOrderDetail = (outBoundOrderDetail: any) => {
 
-        let { trayNumber, outBoundReason, consigneeName, consigneeUnitName, consigneeAddress, deliveryNotes, deliveryData } = outBoundOrderDetail;
+        let { trayNumber, outBoundReason, consigneeName, consigneeUnitName, consigneeAddress, product, pack, quantity, lot, deliveryNotes, deliveryData } = outBoundOrderDetail;
 
-        return <table className="item_D">
-            <tr>
-                <td className="item_D-1"><b>{trayNumber}</b></td>
-                <td className="item_D-2">{consigneeName}</td>
-                <td className="item_D-3"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td colSpan={3} rowSpan={2}><b>{tv(outBoundReason, (values: any) => <>{values.name}</>)}</b></td>
-                <td className="item_D-4">订单备注：</td>
-                <td colSpan={3}><b>{isUndefined(deliveryNotes) ? '' : deliveryNotes}</b></td>
-            </tr>
-            <tr>
-                <td>收货人：</td>
-                <td className="item_D-5"><b>{consigneeName}</b></td>
-                <td className="item_D-6">{consigneeUnitName}</td>
-                <td className="item_D-7">{consigneeAddress}</td>
-            </tr>
-            <tr><td colSpan={7}></td></tr>
-        </table >
+        return <div className="item_A">
+            <div className="item_A-1"><strong>{trayNumber}</strong></div>
+            <div className="item_A-2"></div>
+            <div className="item_A-3">{tv(product, (values: any) => <>{values.origin}</>)}</div>
+            <div className="item_A-4">{lot}</div>
+            <div className="item_A-5">{tv(pack, (values: any) => <>{tvPackx(values)}</>)}</div>
+            <div className="item_A-6">{quantity}</div>
+            <div className="item_A-7">{consigneeUnitName}</div>
+            <div className="item_A-8">{consigneeName}</div>
+            <div className="item_A-9">{deliveryData}</div>
+        </div>
     };
 
     private page = observer(() => {
 
-        let topDiv = <div id="topDiv" className="top_D">
-            <div className="hLeft_D"><span>{this.outBoundOrderId}</span></div>
-            <div className="hcenter_D"><span>发货单</span></div>
-            <div className="hright_D">
+        let topDiv = <div id="topDiv" className="top_A">
+            <div className="hLeft_A"><span>{this.outBoundOrderId}</span></div>
+            <div className="hcenter_A"><span>随货资料清单</span></div>
+            <div className="hright_A">
                 <div><ul>
-                    <li>资料录入员：<span></span></li>
                     <li>经手人：<span></span></li>
                 </ul></div>
             </div>
         </div>
 
-        let dataListDiv = <div id="dataListDiv" className="dataList_D">
-            <List items={this.outBoundOrderInfo} item={{ render: this.renderOutBoundOrderDetail }} none="无出库单数据" />
+        let titleDiv = <div id="titleDiv" className="title_A">
+            <table>
+                <tbody>
+                    <tr>
+                        <th className="th-1">理货号</th>
+                        <th className="th-2">订单号</th>
+                        <th className="th-3">产品编号</th>
+                        <th className="th-4">LOT号</th>
+                        <th className="th-5">包装</th>
+                        <th className="th-6">瓶数</th>
+                        <th className="th-7">收货单位</th>
+                        <th className="th-8">收货人</th>
+                        <th className="th-9">随货资料</th>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
-        let footerDiv = <div id="footerDiv" className="footer_D">
-            <div><span>精准 + 严谨是百灵威人的行为准则！   （地址不详不发送）   公司内部文件注意保管，未经许可不得复印</span></div>
+        let dataListDiv = <div id="dataListDiv" className="dataList_A">
+            <List items={this.outBoundOrderInfo} item={{ render: this.renderOutBoundOrderDetail }} none="无随货资料数据" />
+        </div>
+
+        let footerDiv = <div id="footerDiv" className="footer_A">
+            <div></div>
         </div>
 
         let right = <div className="d-flex justify-content-between mr-1 my-2" onClick={() => this.printPage()}>
             <span className="p-1"><FA className="mr-1 cursor-pointer text-info" name="print" /></span>
         </div>;
 
-        return <Page header="理货单打印" right={right}>
-            <div id="deliveryListPage" className="printPage_D">
+        return <Page header="随货资料打印" right={right}>
+            <div id="accompanyingGoodsInfoPage" className="printPage_A">
                 {topDiv}
                 {dataListDiv}
                 {footerDiv}

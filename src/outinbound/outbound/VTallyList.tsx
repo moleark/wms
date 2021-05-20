@@ -213,7 +213,7 @@ export class VTallyList extends VPage<COutBound> {
         </div>
 
         let dataListDiv = <div id="dataListDiv" className="dataList_T">
-            <List items={this.outBoundOrderInfo} item={{ render: this.renderOutBoundOrderDetail }} none="无出库单数据" />
+            <List items={this.outBoundOrderInfo} item={{ render: this.renderOutBoundOrderDetail }} none="无理货单数据" />
         </div>
 
         let operationReportDiv = <div id="operationDiv" className="operation_T">
