@@ -32,12 +32,12 @@ export class VOutBoundOrderHistory extends VPage<COutBound> {
                 <div className="row">
                     <div className="col-5" onClick={() => openOutBoundOrderDetailPage(outBoundOrderId)}>出库单号：<strong>{outBoundOrderId}</strong></div>
                     <div className="col-4">{tv(warehouse, v => <>{v.name}</>)}</div>
-                    <div className="col-3 text-muted" >{isConfirm}</div>
+                    <div className="col-3 text-muted">打印快递单</div>
                 </div>
                 <div className="row py-1">
+                    <div className="col-5">{format(converter, 'yyyy-MM-dd HH:mm')}</div>
                     <div className="col-4">{tv(operator, v => <>{v.name}</>)}</div>
-                    <div className="col-1"></div>
-                    <div className="col-7">{format(converter, 'yyyy-MM-dd HH:mm')}</div>
+                    <div className="col-3 text-muted" >{isConfirm}</div>
                 </div>
             </div>
         </div>

@@ -8,9 +8,9 @@ import logo from 'images/logo.png';
 import { isUndefined } from 'lodash';
 import { format, addHours } from 'date-fns';
 
-export class VDeliveryReceiptList extends VPage<COutBound> {
+export class VNonDeliveryReceiptList extends VPage<COutBound> {
 
-    deliveryReceiptListInfo: any[];
+    nonDeliveryReceiptListInfo: any[];
     trayNumberList: any[];
     outBoundOrderId: any;
     tempCount: number = 0;            // 循环控制数据明细列表，默认为0
@@ -20,7 +20,7 @@ export class VDeliveryReceiptList extends VPage<COutBound> {
 
     async open(outBoundOrderInfo?: any) {
 
-        this.deliveryReceiptListInfo = outBoundOrderInfo;
+        this.nonDeliveryReceiptListInfo = outBoundOrderInfo;
         this.openPage(this.page);
     }
 
@@ -54,7 +54,7 @@ export class VDeliveryReceiptList extends VPage<COutBound> {
         let focuser = setInterval(() => window.dispatchEvent(new Event('focus')), 500);
 
         printJS({
-            printable: 'deliveryReceiptPage', // 要打印内容的id
+            printable: 'nonDeliveryReceiptPage', // 要打印内容的id
             type: 'html',               // 可以打印html,img详细的可以在官方文档 https://printjs.crabbly.com/中查询
             scanStyles: false,          // 不适用默认样式
             style: style,               // 亦可使用引入的外部css
@@ -160,7 +160,7 @@ export class VDeliveryReceiptList extends VPage<COutBound> {
     private page = observer(() => {
 
         let dataListDiv = <div id="dataListDiv" className="dataList_DR">
-            <List items={this.deliveryReceiptListInfo} item={{ render: this.renderTrayNumberList }} none="无发货数据" />
+            <List items={this.nonDeliveryReceiptListInfo} item={{ render: this.renderTrayNumberList }} none="无发货数据" />
         </div>
 
         let right = <div className="d-flex justify-content-between mr-1 my-2" onClick={() => this.printPage()}>
@@ -168,7 +168,7 @@ export class VDeliveryReceiptList extends VPage<COutBound> {
         </div>
 
         return <Page header="送货服务回执单打印" right={right}>
-            <div id="deliveryReceiptPage">
+            <div id="nonDeliveryReceiptPage">
                 {dataListDiv}
             </div>
         </Page >

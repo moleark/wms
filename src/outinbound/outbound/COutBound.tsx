@@ -9,6 +9,7 @@ import { VTallyList } from './VTallyList';
 import { VDeliveryList } from './VDeliveryList';
 import { VAccompanyingGoodsInfo } from './VAccompanyingGoodsInfo';
 import { VDeliveryReceiptList } from './VDeliveryReceiptList';
+import { VNonDeliveryReceiptList } from './VNonDeliveryReceiptList';
 import { isUndefined } from 'lodash';
 
 export class COutBound extends CUqBase {
@@ -108,12 +109,77 @@ export class COutBound extends CUqBase {
     // 打开送货服务回执打印界面
     openDeliveryReceiptList = async (outBoundOrderInfo: any) => {
 
-        this.openVPage(VDeliveryReceiptList);
+        let deliveryReceiptListInfo: any[] = [];
+        let arrId: any[] = [];
+        let outBoundOrderDetail: any[] = outBoundOrderInfo.outBoundOrderDetailInfo;
+
+        // 把数据源根据临时理货号（托盘号）去重复，因为发货单是;
+        for (let index = 0; index < outBoundOrderDetail.length; index++) {
+            if (arrId.indexOf(outBoundOrderDetail[index]['trayNumber']) == -1 && outBoundOrderDetail[index]['expressLogistics'].id == 10) {
+
+                // let trayNumberUserInfo: any[] = outBoundOrderDetail.find(item => item.trayNumber == outBoundOrderDetail[index]['trayNumber']);
+                let trayNumberUserInfo: any[] = [];
+                let taryProductCount: number = 0;
+                let trayProductPrice: number = 0.00;
+
+                for (let indexB = 0; indexB < outBoundOrderDetail.length; indexB++) {
+                    if (outBoundOrderDetail[indexB]['trayNumber'] == outBoundOrderDetail[index]['trayNumber']) {
+                        trayNumberUserInfo.push(outBoundOrderDetail[indexB]);
+
+                        taryProductCount += outBoundOrderDetail[indexB]['quantity'];
+                        trayProductPrice += outBoundOrderDetail[indexB]['quantity'] * (outBoundOrderDetail[indexB]['showPriceWhenPrintReceipt'] == 1 ? outBoundOrderDetail[indexB]['unitPrice'] : 0);
+                    }
+                }
+                arrId.push(outBoundOrderDetail[index]['trayNumber']);
+                deliveryReceiptListInfo.push({
+                    outBoundOrderId: outBoundOrderInfo.outBoundOrderId, trayNumber: outBoundOrderDetail[index]['trayNumber'],
+                    ordererName: outBoundOrderDetail[index]['ordererName'], consigneeName: outBoundOrderDetail[index]['consigneeName'], consigneeUnitName: outBoundOrderDetail[index]['consigneeUnitName'],
+                    consigneeAddress: outBoundOrderDetail[index]['consigneeAddress'], consogneeMobile: outBoundOrderDetail[index]['consigneeMobile'],
+                    deliveryType: outBoundOrderDetail[index]['deliveryType'], consigneeZipCode: outBoundOrderDetail[index]['consigneeZipcode'],
+                    deliveryReceiptListInfo: trayNumberUserInfo, isViewPrice: outBoundOrderDetail[index]['showPriceWhenPrintReceipt'],
+                    taryProductCount: taryProductCount, trayProductPrice: trayProductPrice, trayPriceCurrency: outBoundOrderDetail[index]['currency']
+                });
+            }
+        }
+        this.openVPage(VDeliveryReceiptList, deliveryReceiptListInfo);
     }
 
     // 打开非送货服务回执打印界面
     openNonDeliveryReceiptList = async (outBoundOrderInfo: any) => {
 
+        let deliveryReceiptListInfo: any[] = [];
+        let arrId: any[] = [];
+        let outBoundOrderDetail: any[] = outBoundOrderInfo.outBoundOrderDetailInfo;
+
+        // 把数据源根据临时理货号（托盘号）去重复，因为发货单是;
+        for (let index = 0; index < outBoundOrderDetail.length; index++) {
+            if (arrId.indexOf(outBoundOrderDetail[index]['trayNumber']) == -1 && outBoundOrderDetail[index]['expressLogistics'].id != 10) {
+
+                // let trayNumberUserInfo: any[] = outBoundOrderDetail.find(item => item.trayNumber == outBoundOrderDetail[index]['trayNumber']);
+                let trayNumberUserInfo: any[] = [];
+                let taryProductCount: number = 0;
+                let trayProductPrice: number = 0.00;
+
+                for (let indexB = 0; indexB < outBoundOrderDetail.length; indexB++) {
+                    if (outBoundOrderDetail[indexB]['trayNumber'] == outBoundOrderDetail[index]['trayNumber']) {
+                        trayNumberUserInfo.push(outBoundOrderDetail[indexB]);
+
+                        taryProductCount += outBoundOrderDetail[indexB]['quantity'];
+                        trayProductPrice += outBoundOrderDetail[indexB]['quantity'] * (outBoundOrderDetail[indexB]['showPriceWhenPrintReceipt'] == 1 ? outBoundOrderDetail[indexB]['unitPrice'] : 0);
+                    }
+                }
+                arrId.push(outBoundOrderDetail[index]['trayNumber']);
+                deliveryReceiptListInfo.push({
+                    outBoundOrderId: outBoundOrderInfo.outBoundOrderId, trayNumber: outBoundOrderDetail[index]['trayNumber'],
+                    ordererName: '', consigneeName: outBoundOrderDetail[index]['consigneeName'], consigneeUnitName: outBoundOrderDetail[index]['consigneeUnitName'],
+                    consigneeAddress: outBoundOrderDetail[index]['consigneeAddress'], consogneeMobile: outBoundOrderDetail[index]['consigneeMobile'],
+                    deliveryType: outBoundOrderDetail[index]['deliveryType'], consigneeZipCode: outBoundOrderDetail[index]['consigneeZipcode'],
+                    deliveryReceiptListInfo: trayNumberUserInfo, isViewPrice: outBoundOrderDetail[index]['showPriceWhenPrintReceipt'],
+                    taryProductCount: taryProductCount, trayProductPrice: trayProductPrice, trayPriceCurrency: outBoundOrderDetail[index]['currency']
+                });
+            }
+        }
+        this.openVPage(VNonDeliveryReceiptList, deliveryReceiptListInfo);
     }
 
     // 查询产品扩展信息
