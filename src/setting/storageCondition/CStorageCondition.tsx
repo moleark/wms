@@ -43,7 +43,7 @@ export class CStorageCondition extends CUqBase {
 
     /**
      * 修改存储条件信息
-     * @param warehouse
+     * @param warehouse 库房
      */
     saveStorageCondition = async (storageConditionId: any, storageCondition: any) => {
 
@@ -55,6 +55,10 @@ export class CStorageCondition extends CUqBase {
     }
 
 
+    /**
+     * 查询库房存储条件跟研发部门维护储存条件的对应关系
+     * @param warehouseStorageCondition 库房存储条件
+     */
     searchStorageConditionMap = async (warehouseStorageCondition: any) => {
 
         let warehouseStorageConditionId = warehouseStorageCondition.id;
@@ -69,6 +73,11 @@ export class CStorageCondition extends CUqBase {
         }
     }
 
+    /**
+     * 添加库房存储条件对应关系
+     * @param warehouseStorageCondition 库房存储条件
+     * @param storageConditionId 研发部维护的存储条件
+     */
     addStorageConditionMap = async (warehouseStorageCondition: any, storageConditionId: any) => {
 
         await this.uqs.warehouse.WarehouseStorageConditionMap.add({ warehouseStorageCondition: warehouseStorageCondition.id, arr1: [{ storageCondition: storageConditionId }] });
@@ -76,11 +85,20 @@ export class CStorageCondition extends CUqBase {
         this.editStorageCondition(warehouseStorageCondition);
     }
 
+    /**
+     * 查询存储条件
+     * @param warehouseStorageCondition 库房存储条件
+     */
     selectStorageCondition = async (warehouseStorageCondition: any) => {
 
         this.openVPage(VStorageConditionDataSource, warehouseStorageCondition);
     }
 
+    /**
+     * 删除库房存储条件
+     * @param warehouseStorageCondition 库房存储条件
+     * @param storageConditionId 研发部门维护的存储条件
+     */
     deleteStorageConditionMap = async (warehouseStorageCondition: any, storageConditionId: any) => {
 
         await this.uqs.warehouse.WarehouseStorageConditionMap.del({ warehouseStorageCondition: warehouseStorageCondition.id, arr1: [{ storageCondition: storageConditionId }] });
@@ -88,6 +106,10 @@ export class CStorageCondition extends CUqBase {
         this.editStorageCondition(warehouseStorageCondition);
     }
 
+    /**
+     * 加载存储条件（研发部门维护的存储条件非库房存储条件）
+     * @returns 存储条件列表
+     */
     loadStorageCondition = async () => {
 
         return await this.uqs.warehouse.StorageCondition.all();

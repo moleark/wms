@@ -4,6 +4,7 @@ import { observable } from 'mobx';
 import { VCutOffSuccess } from './VCutOffSuccess';
 import { VOutBoundOrderHistory } from './VOutBoundOrderHistory';
 import { VOutBoundOrderDetail } from './VOutBoundOrderDetail';
+import { VOutBoundOrderDelivery } from './VOutBoundOrderDelivery';
 import { VOffShelfList } from './VOffShelfList';
 import { VTallyList } from './VTallyList';
 import { VDeliveryList } from './VDeliveryList';
@@ -23,7 +24,10 @@ export class COutBound extends CUqBase {
         this.openVPage(VOutBound);
     }
 
-    // 出库任务处理界面
+    /**
+     * 打开出库任务处理界面
+     * @param warehouse 库房
+     */
     async openReadyOutBoundCutPage(warehouse: any) {
 
         this.warehouse = warehouse;
@@ -34,7 +38,9 @@ export class COutBound extends CUqBase {
         }
     }
 
-    // 出库截单
+    /**
+     * 出库截单功能
+     */
     outBoundCutOff = async () => {
 
         let warehouseId: number = this.warehouse.id;
@@ -43,7 +49,10 @@ export class COutBound extends CUqBase {
         this.openVPage(VCutOffSuccess, result);
     }
 
-    // 打开出库单历史界面
+    /**
+     * 打开出库单历史界面
+     * @param warehouse 库房
+     */
     async openOutBoundOrderHistoryPage(warehouse: any) {
 
         this.warehouse = warehouse;
@@ -53,7 +62,10 @@ export class COutBound extends CUqBase {
         }
     }
 
-    // 打开出库单详情界面
+    /** 
+     * 打开出库单详情界面
+     * @param outBoundOrderId 出库单Id
+     */
     openOutBoundOrderDetailPage = async (outBoundOrderId: any) => {
 
         let outBoundOrderDetail = await this.uqs.warehouse.SearchOutBoundOrderDetail.table({ outBoundOrder: outBoundOrderId });
@@ -61,19 +73,39 @@ export class COutBound extends CUqBase {
         this.openVPage(VOutBoundOrderDetail, outBoundOrderInfo);
     }
 
-    // 打开打印出库单界面
+    /** 
+     * 打开出库单发货信息界面
+     * @param outBoundOrderId 出库单Id
+     */
+    openOutBoundOrderDeliveryPage = async (outBoundOrderId: any) => {
+
+        let outBoundOrderDetail = await this.uqs.warehouse.SearchOutBoundOrderDetail.table({ outBoundOrder: outBoundOrderId });
+        let outBoundOrderInfo = { outBoundOrderId: outBoundOrderId, outBoundOrderInfo: outBoundOrderDetail };
+        this.openVPage(VOutBoundOrderDelivery, outBoundOrderInfo);
+    }
+
+    /**
+     * 打开打印出库单界面
+     * @param outBoundOrderInfo 出库单信息
+     */
     openOffShelfListPage = async (outBoundOrderInfo: any) => {
 
         this.openVPage(VOffShelfList, outBoundOrderInfo);
     }
 
-    // 打开打印理货单界面
+    /**
+     * 打开打印理货单界面
+     * @param outBoundOrderInfo 出库单信息
+     */
     openTallyListPage = async (outBoundOrderInfo: any) => {
 
         this.openVPage(VTallyList, outBoundOrderInfo)
     }
 
-    // 打开打印发货单界面
+    /**
+     * 打开打印发货单界面
+     * @param outBoundOrderInfo 出库单信息
+     */
     openDeliveryListPage = async (outBoundOrderInfo: any) => {
 
         let deliveryListInfo: any[] = [];
@@ -90,7 +122,10 @@ export class COutBound extends CUqBase {
         this.openVPage(VDeliveryList, { outBoundOrderId: outBoundOrderInfo.outBoundOrderId, deliveryListInfo: deliveryListInfo });
     }
 
-    // 打开随货资料打印界面
+    /**
+     * 打开随货资料打印界面
+     * @param outBoundOrderInfo 出库单信息
+     */
     openAccompanyingGoodsInfo = async (outBoundOrderInfo: any) => {
 
         let accompanyingGoodsInfo: any[] = [];
@@ -106,7 +141,10 @@ export class COutBound extends CUqBase {
         this.openVPage(VAccompanyingGoodsInfo, { outBoundOrderId: outBoundOrderInfo.outBoundOrderId, accompanyingGoodsInfo: accompanyingGoodsInfo });
     }
 
-    // 打开送货服务回执打印界面
+    /**
+     * 打开送货服务回执打印界面
+     * @param outBoundOrderInfo 出库单信息
+     */
     openDeliveryReceiptList = async (outBoundOrderInfo: any) => {
 
         let deliveryReceiptListInfo: any[] = [];
@@ -144,7 +182,10 @@ export class COutBound extends CUqBase {
         this.openVPage(VDeliveryReceiptList, deliveryReceiptListInfo);
     }
 
-    // 打开非送货服务回执打印界面
+    /**
+     * 打开非送货服务回执打印界面
+     * @param outBoundOrderInfo 出库单信息
+     */
     openNonDeliveryReceiptList = async (outBoundOrderInfo: any) => {
 
         let deliveryReceiptListInfo: any[] = [];
@@ -182,7 +223,11 @@ export class COutBound extends CUqBase {
         this.openVPage(VNonDeliveryReceiptList, deliveryReceiptListInfo);
     }
 
-    // 查询产品扩展信息
+    /**
+     * 查询产品扩展信息
+     * @param productId 产品Id
+     * @returns 
+     */
     getProductExtention = (productId: number): Promise<any> => {
         let result: any = this.uqs.product.ProductExtention.obj({ product: productId });
         return result;

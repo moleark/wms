@@ -15,7 +15,6 @@ import { CStorageCondition } from "../src/setting/storageCondition/CStorageCondi
 document.title = "库房管理系统";
 
 export class CApp extends CAppBase {
-    // get uqs(): UQs { return this._uqs as UQs };
 
     topKey: any;
     currentSalesRegion: any;

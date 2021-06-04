@@ -13,7 +13,9 @@ export class COutInBound extends CUqBase {
         this.renderView(VOutInBound);
     }
 
-    // 查询库房列表数据源
+    /**
+     * 查询库房列表数据源
+     */
     searchWarehouseList = async () => {
 
         let cSlectWarehouse = this.newC(CSlectWarehouse);
@@ -37,31 +39,39 @@ export class COutInBound extends CUqBase {
         // }
     }
 
-    // 打开出库单历史界面
+    /**
+     * 打开出库单历史界面
+     */
     openOutBoundOrderHistory = async () => {
 
         let { cOutBound } = this.cApp
         await cOutBound.openOutBoundOrderHistoryPage(this.warehouse);
     }
-
     tab = () => this.renderView(VOutInBound);
 }
 
-// 选择库房
+/**
+ * 选择库房
+ */
 export class CSlectWarehouse extends CUqBase {
-
-    async internalStart(fromOrderCreation: boolean/*contactType: ContactType*/) {
+    async internalStart(fromOrderCreation: boolean) {
 
         this.openVPage(VWarehouseListDataSouce);
     }
 
-    // 查询所有库房列表
+    /**
+     * 查询所有库房列表
+     * @returns 返回库房列表
+     */
     loadWarehouseList = async () => {
 
         return await this.uqs.warehouse.GetValidWarehouseList.table({ key: '' });
     }
 
-    // 选中库房执行
+    /**
+     * 选择库房
+     * @param warehouse 库房
+     */
     selectedWarehouse = async (warehouse: any) => {
 
         this.backPage();

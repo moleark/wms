@@ -35,7 +35,7 @@ export class CWarehouse extends CUqBase {
 
     /**
      * 查询库房
-     * @param key 
+     * @param key 库房名称关键字
      */
     searchWarehouseByKey = async (key: String) => {
 
@@ -52,7 +52,8 @@ export class CWarehouse extends CUqBase {
 
     /**
      * 打开库房编辑界面
-    */
+     * @param warehouse 库房
+     */
     editWarehouse = async (warehouse: any) => {
 
         this.openVPage(VWarehouse, warehouse);
@@ -60,7 +61,7 @@ export class CWarehouse extends CUqBase {
 
     /**
      * 修改库房信息
-     * @param warehouse
+     * @param warehouse 库房
      */
     saveWarehouse = async (warehouseId: any, warehouse: any) => {
 
@@ -73,8 +74,8 @@ export class CWarehouse extends CUqBase {
 
     /**
      * 查询库区
-     * @param warehouse
-     * @param key
+     * @param warehouse 库房
+     * @param key 查询关键字
      */
     searchWarehouseBuildByKey = async (warehouse: any, key?: String) => {
 
@@ -93,7 +94,8 @@ export class CWarehouse extends CUqBase {
 
     /**
      * 打开编辑库区界面
-    */
+     * @param warehouseBuilding 库区
+     */
     editWarehouseBuilding = async (warehouseBuilding: any) => {
 
         this.openVPage(VWarehouseBuilding, warehouseBuilding);
@@ -101,7 +103,7 @@ export class CWarehouse extends CUqBase {
 
     /**
      * 修改库区信息
-     * @param warehouse
+     * @param warehouse 库区
      */
     saveWarehouseBuilding = async (warehouseBuildId: any, warehouseBuild: any) => {
 
@@ -115,8 +117,8 @@ export class CWarehouse extends CUqBase {
 
     /**
      * 查询房间
-     * @param warehouseBuild
-     * @param key 
+     * @param warehouseBuild 库区
+     * @param key 房间关键字
      */
     searchWarehouseRoomByKey = async (warehouse: any, key?: String) => {
 
@@ -135,7 +137,8 @@ export class CWarehouse extends CUqBase {
 
     /**
      * 打开编辑房间界面
-    */
+     * @param warehouseRoom 房间
+     */
     editWarehouseRoom = async (warehouseRoom: any) => {
 
         this.openVPage(VWarehouseRoom, warehouseRoom);
@@ -143,7 +146,7 @@ export class CWarehouse extends CUqBase {
 
     /**
      * 修改房间信息
-     * @param warehouse
+     * @param warehouse 房间
      */
     saveWarehouseRoom = async (warehouseRoomId: any, warehouseRoom: any) => {
 
@@ -158,8 +161,8 @@ export class CWarehouse extends CUqBase {
 
     /**
      *  查询货架组
-     * @param warehouseRoom 
-     * @param key 
+     * @param warehouseRoom 房间
+     * @param key 货架组关键字
      */
     searchShelfByKey = async (warehouseRoom: any, key?: String) => {
 
@@ -178,7 +181,8 @@ export class CWarehouse extends CUqBase {
 
     /**
      * 打开编辑货架组界面
-    */
+     * @param shelf 货架组
+     */
     editShelf = async (shelf: any) => {
 
         this.openVPage(VShelf, shelf);
@@ -186,7 +190,7 @@ export class CWarehouse extends CUqBase {
 
     /**
      * 修改货架组信息
-     * @param warehouse
+     * @param shelf 货架组
      */
     saveShelf = async (shelfId: any, shelf: any) => {
 
@@ -201,8 +205,8 @@ export class CWarehouse extends CUqBase {
 
     /**
      * 查询货架层
-     * @param shelf 
-     * @param key 
+     * @param shelf 货架组
+     * @param key 层关键字
      */
     searchShelfLayerByKey = async (shelf: string, key?: String) => {
 
@@ -221,7 +225,8 @@ export class CWarehouse extends CUqBase {
 
     /**
      * 打开编辑货架层界面
-    */
+     * @param shelfLayer 货架层
+     */
     editShelfLayer = async (shelfLayer: any) => {
 
         this.openVPage(VShelfLayer, shelfLayer);
@@ -229,7 +234,8 @@ export class CWarehouse extends CUqBase {
 
     /**
      * 修改货架层信息
-     * @param warehouse
+     * @param shelfLayerId 
+     * @param shelfLayer 
      */
     saveShelfLayer = async (shelfLayerId: any, shelfLayer: any) => {
 
@@ -243,8 +249,8 @@ export class CWarehouse extends CUqBase {
 
     /**
      * 查询货位号
-     * @param shelfLayer 
-     * @param key 
+     * @param shelfLayer 货位层
+     * @param key 货位号关键字
      */
     searchShelfBlockByKey = async (shelfLayer: string, key?: String) => {
 
@@ -263,7 +269,8 @@ export class CWarehouse extends CUqBase {
 
     /**
      * 打开编辑货位界面
-    */
+     * @param shelfLayer 货位层
+     */
     editShelfBlock = async (shelfLayer: any) => {
 
         this.openVPage(VShelfBlock, shelfLayer);
@@ -271,7 +278,8 @@ export class CWarehouse extends CUqBase {
 
     /**
      * 修改货位信息
-     * @param warehouse
+     * @param shelfBlockId 
+     * @param shelfBlock 
      */
     saveShelfblock = async (shelfBlockId: any, shelfBlock: any) => {
 

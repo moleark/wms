@@ -7,7 +7,9 @@ import printJS from 'print-js';
 // import './printStyle/OffShelfList.css';
 import { autorun, observable } from 'mobx';
 
-export class VOutBoundOrderDetail extends VPage<COutBound> {
+document.title = "库房管理系统";
+
+export class VOutBoundOrderDelivery extends VPage<COutBound> {
 
     outBoundOrderDetail: any[];
     outBoundOrderId: any;
