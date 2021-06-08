@@ -6,6 +6,7 @@ import logo from 'images/logo.png';
 import printJS from 'print-js';
 // import './printStyle/OffShelfList.css';
 import { autorun, observable } from 'mobx';
+import { values } from 'lodash';
 
 export class VOutBoundOrderDetail extends VPage<COutBound> {
 
@@ -19,13 +20,15 @@ export class VOutBoundOrderDetail extends VPage<COutBound> {
         this.openPage(this.page);
     }
 
-    private renderOutBoundOrderDetail = (outBoundOrderDetail: any) => {
+    private renderOutBoundOrderDetail = (outBoundOrderDetail: any, index: number) => {
 
         let { $id, coaQuantity, consigneeAddress, consigneeMobile, consigneeName, consigneeTelphone, consigneeUnitName, consigneeZipcode, currency, expressLogistics,
             isAppointLot, isNeedDelivery, msdsQuantity, needInsuredWhenDelivery, outBoundOrder, outBoundReason, pack, product, purchaseBillQuantity, quantity,
             receiptQuantity, deliveryData, relationId, shelfBlock, showPriceWhenPrintReceipt, trayNumber, unitPrice, warehouse, deliveryNotes } = outBoundOrderDetail;
 
-        return <div className="row d-flex px-1 py-1">
+        let { setDeliveryNumber } = this.controller;
+
+        return <div id="itemDetail" className="row d-flex px-1 py-1">
 
             <div className="col-12">
                 <div className="row py-1">
@@ -40,6 +43,15 @@ export class VOutBoundOrderDetail extends VPage<COutBound> {
                     <div className="col-4 pl-0"><strong>{consigneeName}</strong></div>
                     <div className="col-2 text-muted pr-0">数量：</div>
                     <div className="col-3 pl-0"><strong>{quantity}</strong></div>
+                </div>
+
+                <div className="row py-1">
+                    <div className="col-3 text-muted pr-0">发运方式：</div>
+                    <div className="col-9 pl-0"><strong>{tv(expressLogistics, (values: any) => <>{values.name}</>)}</strong></div>
+                </div>
+                <div className="row py-1">
+                    <div className="col-3 text-muted pr-0">运单号：</div>
+                    <div className="col-7 pl-0"><input type="text" onKeyUp={() => setDeliveryNumber(this.event, index)} className="form-control"></input></div>
                 </div>
 
                 <div className="row py-1">
@@ -67,7 +79,10 @@ export class VOutBoundOrderDetail extends VPage<COutBound> {
             <div className="px-0"><span>出库单详情</span></div>
         </header>
 
-        let outBoundOrderDetail = <List items={this.outBoundOrderDetail} item={{ render: this.renderOutBoundOrderDetail }} none="无出库单明细" />
+        let outBoundOrderDetail = <div id="itemList">
+            <List items={this.outBoundOrderDetail} item={{ render: this.renderOutBoundOrderDetail }} none="无出库单明细" />
+        </div>
+
         let outBoundOrderInfo: any = { outBoundOrderId: this.outBoundOrderId, outBoundOrderDetailInfo: this.outBoundOrderDetail }
         let { openOffShelfListPage, openTallyListPage, openDeliveryListPage, openAccompanyingGoodsInfo, openDeliveryReceiptList, openNonDeliveryReceiptList } = this.controller;
 

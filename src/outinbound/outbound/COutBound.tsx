@@ -4,7 +4,6 @@ import { observable } from 'mobx';
 import { VCutOffSuccess } from './VCutOffSuccess';
 import { VOutBoundOrderHistory } from './VOutBoundOrderHistory';
 import { VOutBoundOrderDetail } from './VOutBoundOrderDetail';
-import { VOutBoundOrderDelivery } from './VOutBoundOrderDelivery';
 import { VOffShelfList } from './VOffShelfList';
 import { VTallyList } from './VTallyList';
 import { VDeliveryList } from './VDeliveryList';
@@ -73,16 +72,35 @@ export class COutBound extends CUqBase {
         this.openVPage(VOutBoundOrderDetail, outBoundOrderInfo);
     }
 
+    setDeliveryNumber = async (evt: any, index: number) => {
+
+        let deliveryNumber = document.getElementById("itemList").getElementsByTagName("ul")[0].getElementsByTagName("li")[index].getElementsByTagName("input")[0].value;
+        evt = window.event || evt;
+
+        if (evt.keyCode == 13 && !isUndefined(deliveryNumber) && deliveryNumber != '') {
+
+            // alert("修改快递单号");
+            // await this.uqs.warehouse.setDeliveryNumber();
+
+            let itemListLiItem: any = document.getElementById("itemList").getElementsByTagName("ul")[0].getElementsByTagName("li")[index + 1].getElementsByTagName("input")[0];
+            // 下一个文本框获取焦点
+            itemListLiItem.focus();
+        } else {
+            // alert(evt.keyCode);
+        }
+
+    }
+
     /** 
      * 打开出库单发货信息界面
      * @param outBoundOrderId 出库单Id
      */
-    openOutBoundOrderDeliveryPage = async (outBoundOrderId: any) => {
+    /*openOutBoundOrderDeliveryPage = async (outBoundOrderId: any) => {
 
         let outBoundOrderDetail = await this.uqs.warehouse.SearchOutBoundOrderDetail.table({ outBoundOrder: outBoundOrderId });
         let outBoundOrderInfo = { outBoundOrderId: outBoundOrderId, outBoundOrderInfo: outBoundOrderDetail };
         this.openVPage(VOutBoundOrderDelivery, outBoundOrderInfo);
-    }
+    }*/
 
     /**
      * 打开打印出库单界面

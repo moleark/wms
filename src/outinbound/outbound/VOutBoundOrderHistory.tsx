@@ -21,7 +21,7 @@ export class VOutBoundOrderHistory extends VPage<COutBound> {
 
     private renderOutBoundOrder = (outBoundOrder: any) => {
 
-        let { openOutBoundOrderDetailPage, openOutBoundOrderDeliveryPage } = this.controller;
+        let { openOutBoundOrderDetailPage } = this.controller;
         let { $id, id: outBoundOrderId, warehouse, operator, state, createTime } = outBoundOrder;
 
         let converter: number | Date = addHours(createTime, 8);
@@ -31,15 +31,15 @@ export class VOutBoundOrderHistory extends VPage<COutBound> {
             <div className="col-12">
                 <div className="row">
                     <div className="col-5" onClick={() => openOutBoundOrderDetailPage(outBoundOrderId)}>出库单号：<strong>{outBoundOrderId}</strong></div>
-                    <div className="col-3">{tv(warehouse, v => <>{v.name}</>)}</div>
-                    <div className="col-4" onClick={() => openOutBoundOrderDeliveryPage(outBoundOrderId)}>
-                        <button type="button" className="w-100 primary">打印快递单</button>
+                    <div className="col-4">{tv(warehouse, v => <>{v.name}</>)}</div>
+                    <div className="col-3" onClick={() => undefined}>
+
                     </div>
                 </div>
                 <div className="row py-1">
                     <div className="col-5">{format(converter, 'yyyy-MM-dd HH:mm')}</div>
-                    <div className="col-3">{tv(operator, v => <>{v.name}</>)}</div>
-                    <div className="col-4 text-muted" >{isConfirm}</div>
+                    <div className="col-4">{tv(operator, v => <>{v.name}</>)}</div>
+                    <div className="col-3 text-muted" >{isConfirm}</div>
                 </div>
             </div>
         </div>
